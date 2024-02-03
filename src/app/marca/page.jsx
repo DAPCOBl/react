@@ -43,7 +43,7 @@ export default function MarcaPage() {
 
   return (
     <div>
-      <h1>Marcas</h1>
+      <h1>Marca</h1>
       <div>
         <button onClick={() => handleTabChange("create")}>Crear Marca</button>
         <button onClick={() => handleTabChange("read")}>Ver Marcas</button>
