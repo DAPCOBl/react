@@ -12,11 +12,26 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     },
+    estado: {
+      type: String,
+      default: 'inactivo',
+    },
+    bodega: {
+      nombre: {
+        type: String,
+        default: null,
+      },
+      direccion: {
+        type: String,
+        default: null,
+      }
+    }
   },
   { timestamps: true }
 );
+
 
 const User = models.User || mongoose.model("User", userSchema);
 export default User;

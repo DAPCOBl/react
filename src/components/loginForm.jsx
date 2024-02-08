@@ -15,24 +15,35 @@ export default function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const res = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      });
-
+      const res = await signIn("google", { redirect: false });
+  
       if (res.error) {
         setError("Invalid Credentials");
         return;
       }
-
+      const userData = res?.user;
+  
+      await saveUserDataToMongoDB(userData);
       router.replace("admin");
     } catch (error) {
       console.log(error);
     }
   };
+  
+  const saveUserDataToMongoDB = async (userData) => {
+    try {
+      
+      await User.create({
+        name: userData.name,
+        email: userData.email,
+      });
+    } catch (error) {
+      console.error("Error al guardar los datos del usuario en MongoDB:", error);
+    }
+  };
+  
 
   return (
     <div>
