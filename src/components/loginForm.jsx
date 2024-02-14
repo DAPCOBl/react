@@ -10,47 +10,34 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
+  
   const router = useRouter();
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
-      const res = await signIn("google", { redirect: false });
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false
+      });
   
       if (res.error) {
-        setError("Invalid Credentials");
+        setError("Credenciales inválidas");
         return;
       }
-      const userData = res?.user;
-  
-      await saveUserDataToMongoDB(userData);
+      
       router.replace("admin");
     } catch (error) {
       console.log(error);
     }
   };
-  
-  const saveUserDataToMongoDB = async (userData) => {
-    try {
-      
-      await User.create({
-        name: userData.name,
-        email: userData.email,
-      });
-    } catch (error) {
-      console.error("Error al guardar los datos del usuario en MongoDB:", error);
-    }
-  };
-  
 
   return (
     <div>
-      
       <div>
         <h1>Login</h1>
-
         <form onSubmit={handleSubmit}>
           <input
             onChange={(e) => setEmail(e.target.value)}
@@ -60,20 +47,11 @@ export default function LoginForm() {
           <input
             onChange={(e) => setPassword(e.target.value)}
             type="password"
-            placeholder="Password"
+            placeholder="Contraseña"
           />
-          <button>
-            Login
-          </button>
-          {error && (
-            <div>
-              {error}
-            </div>
-          )}
-
-          <Link href={"/register"}>
-            No tienes cuenta? <span className="underline">Registrate</span>
-          </Link>
+          <button type="submit">Login</button>
+          {error && <div>{error}</div>}
+          <Link href={"/register"}>No tienes cuenta? <span>Registrate</span></Link>
         </form>
       </div>
     </div>

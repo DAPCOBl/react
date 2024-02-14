@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
   const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [numDoc, setNumDoc] = useState("");
+  const [numPhone, setNumPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -15,7 +18,7 @@ export default function RegisterForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !password) {
+    if (!name || !surname || !numPhone || !numDoc || !email || !password) {
       setError("All fields are necessary.");
       return;
     }
@@ -43,6 +46,9 @@ export default function RegisterForm() {
         },
         body: JSON.stringify({
           name,
+          surname,
+          numDoc,
+          numPhone,
           email,
           password,
         }),
@@ -69,7 +75,22 @@ export default function RegisterForm() {
           <input
             onChange={(e) => setName(e.target.value)}
             type="text"
-            placeholder="Full Name"
+            placeholder="Name"
+          />
+          <input
+            onChange={(e) => setSurname(e.target.value)}
+            type="text"
+            placeholder="Surname"
+          />
+          <input
+            onChange={(e) => setNumDoc(e.target.value)}
+            type="number"
+            placeholder="Número de Documento"
+          />
+          <input
+            onChange={(e) => setNumPhone(e.target.value)}
+            type="number"
+            placeholder="Número de celular"
           />
           <input
             onChange={(e) => setEmail(e.target.value)}

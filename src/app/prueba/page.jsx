@@ -1,4 +1,4 @@
-import Repuesto from '../../components/repuesto';
+import Repuesto from '../../components/prueba';
 import React from 'react';
 
 export default function RepuestoPage() {

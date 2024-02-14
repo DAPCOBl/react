@@ -6,6 +6,18 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    surname: {
+      type: String,
+      required: false,
+    },
+    numDoc: {
+      type: Number,
+      required: false,
+    },
+    numPhone: {
+      type: Number,
+      required: false,
+    },
     email: {
       type: String,
       required: true,
@@ -18,15 +30,17 @@ const userSchema = new Schema(
       type: String,
       default: 'inactivo',
     },
-    bodega: {
-      nombre: {
+    rol: {
+      descripcionRol: {
         type: String,
         default: null,
       },
-      direccion: {
+    },
+    tipoDoc: {
+      descripcionTipoDoc: {
         type: String,
-        default: null,
-      }
+        default: 'Cedula Ciudadana',
+      },
     }
   },
   { timestamps: true }
