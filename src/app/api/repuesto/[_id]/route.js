@@ -1,4 +1,4 @@
-import Repuesto from "../../../models/repuesto";
+import Repuesto from "../../../../models/repuesto";
 
 export async function DELETE(request, { params }) {
     try {

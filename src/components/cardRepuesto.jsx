@@ -27,9 +27,6 @@ function RepuestosList() {
       const response = await fetch(`../api/repuesto/${_id}`, {
         method: 'DELETE'
       });
-      if (!response.ok) {
-        throw new Error('Error al eliminar el repuesto');
-      }
       fetchRepuestos();
     } catch (error) {
       setError(error.message);
