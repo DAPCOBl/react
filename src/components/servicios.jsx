@@ -34,7 +34,6 @@ useEffect(() => {
   initCollapsible();
 
   return () => {
-    // Cleanup event listener when component unmounts
     const elems = document.querySelectorAll('.collapsible');
     const targetElem = elems[0];
 

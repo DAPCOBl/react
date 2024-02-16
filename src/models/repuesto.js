@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const repuestoSchema = new Schema(
+const RepuestoSchema = new mongoose.Schema(
   {
     urlImg: {
       type: String,
@@ -21,7 +20,7 @@ const repuestoSchema = new Schema(
       unique: true,
     },
     precio: {
-      type: String,
+      type: Number,
       required: true,
     },
     modelo: {
@@ -48,4 +47,6 @@ const repuestoSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Repuesto', repuestoSchema);
+const Repuesto = mongoose.models.Repuesto || mongoose.model('Repuesto', RepuestoSchema);
+
+module.exports = Repuesto;

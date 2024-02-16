@@ -19,7 +19,7 @@ export default function RegisterForm() {
     e.preventDefault();
 
     if (!name || !surname || !numPhone || !numDoc || !email || !password) {
-      setError("All fields are necessary.");
+      setError("TODOS LOS CAMPOS SON NECESARIOS.");
       return;
     }
 
@@ -35,7 +35,7 @@ export default function RegisterForm() {
       const { user } = await resUserExists.json();
 
       if (user) {
-        setError("User already exists.");
+        setError("EL USUARIO YA EXISTE.");
         return;
       }
 
@@ -59,10 +59,10 @@ export default function RegisterForm() {
         form.reset();
         router.push("/");
       } else {
-        console.log("User registration failed.");
+        console.log("User registrado fallido.");
       }
     } catch (error) {
-      console.log("Error during registration: ", error);
+      console.log("Error durante el registro: ", error);
     }
   };
 

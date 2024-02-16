@@ -1,41 +1,51 @@
 import { connectMongoDB } from "../../../lib/mongodb";
 import Repuesto from "../../../models/repuesto";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export async function POST(req) {
+  try {
+    const { urlImg, nombre, descripcionRepuesto, referencia, precio, modelo, marca, tipoRepuesto, tipoGarantia, condicion  } = await req.json();
+    await connectMongoDB();
+    await Repuesto.create({ urlImg, nombre, descripcionRepuesto, referencia, precio, modelo, marca, tipoRepuesto, tipoGarantia, condicion });
 
-export default async function handler(req, res) {
-  if (req.method === "POST") {
-    try {
-      const { urlImg, nombre, descripcionRepuesto, referencia, precio, modelo, marca, tipoRepuesto, tipoGarantia, condicion } = req.body;
-      await connectMongoDB();
-      await Repuesto.create({ urlImg, nombre, descripcionRepuesto, referencia, precio, modelo, marca, tipoRepuesto, tipoGarantia, condicion});
+    return NextResponse.json({ message: "Repuesto registrado." }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json(
+      { message: "A ocurrido un error al registrar el repuesto." },
+      { status: 500 }
+    );
+  }
+}
 
-      const file = req.file;
-      if (!file) {
-        return res.status(400).json({ message: "No file uploaded." });
+
+export async function GET() {
+  try {
+    const results = await Repuesto.find({});
+
+    const mappedResults = results.map(result => ({
+      _id: result._id,
+      urlImg: result.urlImg,
+      nombre: result.nombre,
+      descripcionRepuesto: result.descripcionRepuesto,
+      referencia: result.referencia,
+      precio: result.precio,
+      modelo: result.modelo,
+      marca: result.marca,
+      tipoRepuesto: result.tipoRepuesto,
+      tipoGarantia: result.tipoGarantia,
+      condicion: result.condicion,
+    }));
+
+    return NextResponse.json(mappedResults);
+  } catch (error) {
+    console.log('Error: ', error);
+    return NextResponse.json(
+      {
+        message: error.message,
+      },
+      {
+        status: 500,
       }
-
-      const { createReadStream, filename, mimetype, encoding } = await file;
-      const stream = createReadStream();
-      const uploadPath = `./uploads/${filename}`;
-      await new Promise((resolve, reject) =>
-        stream
-          .pipe(fs.createWriteStream(uploadPath))
-          .on("finish", resolve)
-          .on("error", reject)
-      );
-
-      return res.status(201).json({ message: "Repuesto registered and file uploaded successfully." });
-    } catch (error) {
-      return res.status(500).json({ message: "An error occurred while registering the Repuesto." });
-    }
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    );
   }
 }

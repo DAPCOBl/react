@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation"
 
 export default function CreateRepuesto() {
-  const [urlImg, seturlImg] = useState("");
+  const [urlImg, setUrlImg] = useState("");
   const [nombre, setNombre] = useState("");
   const [descripcionRepuesto, setDescripcionRepuesto] = useState("");
   const [referencia, setReferencia] = useState("");
@@ -14,11 +14,18 @@ export default function CreateRepuesto() {
   const [tipoGarantia, setTipoGarantia] = useState("");
   const [condicion, setCondicion] = useState("");
   const router = useRouter();
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!urlImg || !nombre) {
+      setError("TODOS LOS CAMPOS SON NECESARIOS");
+      return;
+    }
+
     try {
+      
+
       const res = await fetch("api/repuesto", {
         method: "POST",
         headers: {
@@ -38,13 +45,29 @@ export default function CreateRepuesto() {
         }),
       });
 
-      if (res.status === 201) {
-        router.push("/repuesto");
+      if (res.ok) {
+        const form = e.target;
+        form.reset();
+        router.push("/");
       } else {
-        console.error("Error al crear la Marca");
+        console.log("Repuesto registrado fallido.");
       }
     } catch (error) {
-      console.error("Error al crear la Marca:", error);
+      console.log("Error during registration: ", error);
+    }
+  };
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setUrlImg(reader.result);
+      };
+
+      reader.readAsDataURL(file);
     }
   };
 
@@ -55,25 +78,10 @@ export default function CreateRepuesto() {
 
         <form onSubmit={handleSubmit}>
           <input
-            onChange={(e) => seturlImg(e.target.value)}
             type="file"
+            accept="image/*"
+            onChange={handleImageChange}
           />
-
-
-          <input
-            type="file"
-            onChange={(e) => {
-              setFile(e.target.files[0]);
-            }}
-          />
-
-          {file && (
-            <img
-              src={URL.createObjectURL(file)}
-              alt=""
-            />
-          )}
-
           <input
             onChange={(e) => setNombre(e.target.value)}
             type="text"

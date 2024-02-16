@@ -26,13 +26,13 @@ export default function UserInfo() {
   }, [showBye, session]);
 
   return (
-    <div className="grid place-items-center h-screen">
-      <div className="shadow-lg p-8 bg-zince-300/10 flex flex-col gap-2 my-6">
+    <div>
+      <div>
         <div>
-          Name: <span className="font-bold">{session?.user?.name}</span>
+          Name: <span>{session?.user?.name}</span>
         </div>
         <div>
-          Email: <span className="font-bold">{session?.user?.email}</span>
+          Email: <span>{session?.user?.email}</span>
         </div>
         <button onClick={() => handleSignOut()} className="cta">
           Cerrar sesión
