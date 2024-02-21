@@ -91,7 +91,6 @@ body {
     z-index: -1;
 }
 
-
 /* nab */
 
 .nab__items {
@@ -338,10 +337,6 @@ img {
     transform: scale(1);
 }
 
-
-
-
-
 /***************************************** plan_container *************************************************************/
 
 .plan_container {
@@ -387,7 +382,6 @@ img {
     --color-items: #fff;
 }
 
-
 .plan__name {
     color: var(--color-plan);
     margin-bottom: 15px;
@@ -428,7 +422,6 @@ img {
     color: var(--color-cta);
     box-shadow: 0 0 1px rgba(0, 0, 0, .5);
 }
-
 
 .text {
     width: auto;
@@ -548,14 +541,12 @@ img {
     color: #FF6A00 !important;
 }
 
-
 .servicesP {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
     color: #333;
     font-size: 24px;
 }
-
 
 /********************************************************Plan__Grupal ********************************************************/
 
@@ -713,7 +704,6 @@ img {
     color: black;
 }
 
-
 /********************************************************************************/
 .catalogo {
     width: 90%;
@@ -759,7 +749,6 @@ img {
     margin: 10px 150px 20px 0px;
     width: 100%;
 }
-
 
 .Marca input {
     accent-color: #FF6A00;
@@ -982,7 +971,6 @@ input[type="checkbox" i] {
     transform: scale(1);
 }
 
-
 /****************************/
 .verProveedoresBtnClass {
     padding-top: 10px;
@@ -1180,7 +1168,6 @@ input[type="checkbox" i] {
     margin-left: 100px !important;
 }
 
-
 /**********************CARD REPUESTOS**********************/
 
 .repuestos-list-container {
@@ -1269,8 +1256,6 @@ input[type="checkbox" i] {
     display: none;
     height: 300px;
 }
-
-
 
 .imagen img{
     height: 70%;
@@ -1397,7 +1382,6 @@ input[type="checkbox" i] {
 
 }
 
-
 .cards2 {
     color: #FF6A00;
     width: 400px;
@@ -1442,7 +1426,6 @@ input[type="checkbox" i] {
 .cards2 .contenido a{
     transition: 0.5s;
 }
-
 
 .cards2 .contenido h4{
     margin-top: 5px;
