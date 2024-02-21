@@ -20,7 +20,7 @@ const RepuestoSchema = new mongoose.Schema(
       unique: true,
     },
     precio: {
-      type: Number,
+      type: String,
       required: true,
     },
     modelo: {

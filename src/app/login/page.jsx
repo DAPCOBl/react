@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import '../page.module.css';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
 import Swal from 'sweetalert2';

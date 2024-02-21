@@ -57,7 +57,7 @@ const HeroHeader = () => {
           </li>
         </ul>
         <div className="nab__menu">
-          <img src=".IMG/LOGO.png" alt="Logo" className="nab__img" />
+          <img src="../../public/IMG/LOGO.png" alt="Logo" className="nab__img" />
         </div>
       </div>
       <section className="hero__container container">

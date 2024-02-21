@@ -26,14 +26,14 @@ const userSchema = new Schema(
       type: String,
       required: false,
     },
-    estado: {
-      type: String,
-      default: 'inactivo',
-    },
     rol: {
       descripcionRol: {
         type: String,
         default: null,
+      },
+      estado: {
+        type: String,
+        default: 'inactivo',
       },
     },
     tipoDoc: {

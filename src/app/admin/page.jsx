@@ -1,11 +1,9 @@
 "use client"
-import CardRepuesto from '../../components/cardRepuesto';
+import Card from '../../components/card';
 import React from 'react';
 
 export default function RepuestoPage() {
   return (
-    <div>
-      <CardRepuesto />
-    </div>
+    <Card/>
   );
 }

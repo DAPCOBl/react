@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Loading from '../components/loader';
+
 
 function RepuestosList() {
   const [repuestos, setRepuestos] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchRepuestos = async () => {
     try {
@@ -12,8 +15,10 @@ function RepuestosList() {
       }
       const repuestosData = await response.json();
       setRepuestos(repuestosData);
+      setLoading(false);
     } catch (error) {
       setError(error.message);
+      setLoading(false);
     }
   };
 
@@ -34,6 +39,10 @@ function RepuestosList() {
       setError(error.message);
     }
   };
+
+  if (loading) {
+    return <Loading loading={loading} />;
+  }
 
   return (
     <div>
