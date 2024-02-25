@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,BrowserRouter as Router, } from 'react-router-dom';
 
 function RepuestosList() {
   const [repuestos, setRepuestos] = useState([]);
@@ -23,6 +23,7 @@ function RepuestosList() {
   }, []);
 
   return (
+    <Router>
     <div className="repuestos-list-container">
       <h1>Lista de Repuestos</h1>
       {error && <p>{error}</p>}
@@ -45,6 +46,7 @@ function RepuestosList() {
         ))}
       </ul>
     </div>
+    </Router>
   );
 }
 
