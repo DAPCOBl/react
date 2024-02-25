@@ -48,10 +48,10 @@ export default function Producto({ id }) {
 
     return (
         <>
-            <div className="contenedor-producto">
-                <div className="producto">
-                    <div className="imagen">
-                        <img className="materialboxed" src={repuesto.urlImg} alt="" id="img1" />
+            <div className="details-contenedor-producto">
+                <div className="details-producto">
+                    <div className="details-imagen">
+                        <img className="materialboxed" src={repuesto.urlImg} alt="" id="details-img1" />
                     </div>
                     <div className="info-pro">
                         <h5>{repuesto.nombre}</h5>
@@ -68,14 +68,14 @@ export default function Producto({ id }) {
                 <div className="cat">
                     <div className=" cat-descp" onClick={aparecerdesp}>
                         <h3>Caracteristicas</h3>
-                        <div className="raya1" id="raya1"></div>
+                        <div className="details-raya1" id="raya1"></div>
                     </div>
                     <div className=" cat-espe" onClick={aparecerespe}>
                         <h3>ESPECIFICACIONES</h3>
-                        <div className="raya2" id="raya2"></div>
+                        <div className="details-raya2" id="raya2"></div>
                     </div>
                 </div>
-                <div className="descripcion" id="descripcion">
+                <div className="details-descripcion" id="descripcion">
                     <ul>
                         <p>Referencia: {repuesto.referencia}</p>
                         <p>Modelo: {repuesto.modelo}</p>
