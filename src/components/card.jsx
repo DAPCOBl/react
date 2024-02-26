@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link ,BrowserRouter as Router, } from 'react-router-dom';
+import Loading from '../components/loader';
 
 function RepuestosList() {
   const [repuestos, setRepuestos] = useState([]);
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchRepuestos = async () => {
     try {
@@ -13,14 +15,24 @@ function RepuestosList() {
       }
       const repuestosData = await response.json();
       setRepuestos(repuestosData);
+      setLoading(false);
     } catch (error) {
-      setError('No se pudieron cargar los repuestos. Intente nuevamente más tarde.');
+      setError = Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Error al cargar los repuestos"
+      });
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchRepuestos();
   }, []);
+
+  if (loading) {
+    return <Loading loading={loading} />;
+}
 
   return (
     <Router>
@@ -30,7 +42,7 @@ function RepuestosList() {
       <ul className="repuestos-list">
         {repuestos.map(repuesto => (
           <li key={repuesto._id} className="repuesto-item">
-            <Link to="/details">
+            <Link to={`/details/${repuesto._id}`}>
               <div className="repuesto-image-container">
                 <img
                   src={repuesto.urlImg}

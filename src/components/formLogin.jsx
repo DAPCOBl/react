@@ -4,12 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
+import Swal from 'sweetalert2';
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error] = useState("");
   
   const router = useRouter();
   
@@ -24,7 +24,11 @@ export default function LoginForm() {
       });
   
       if (res.error) {
-        setError("Credenciales inválidas");
+        setError = Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Usuario invalido"
+        });
         return;
       }
       

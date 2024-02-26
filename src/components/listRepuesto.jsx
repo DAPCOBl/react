@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 function ListRepuestos() {
     const [repuestos, setRepuestos] = useState([]);
-    const [error, setError] = useState(null);
+    const [error] = useState(null);
     const [marcasFiltradas, setMarcasFiltradas] = useState([]);
     const [tiposRepuestoFiltrados, setTiposRepuestoFiltrados] = useState([]);
     const [repuestosFiltrados, setRepuestosFiltrados] = useState([]);
@@ -17,7 +17,11 @@ function ListRepuestos() {
             setRepuestos(repuestosData);
             setRepuestosFiltrados(repuestosData);
         } catch (error) {
-            setError('No se pudieron cargar los repuestos. Intente nuevamente más tarde.');
+            setError = Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Error al cargar los repuestos"
+              });
         }
     };
 

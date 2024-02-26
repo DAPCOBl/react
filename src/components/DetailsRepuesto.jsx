@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import M from 'materialize-css';
 import Loading from '../components/loader';
-import Footer from './footer';
+import Footer from '../components/footer';
 
 export default function Producto({ id }) {
     const [repuesto, setRepuesto] = useState(null);
@@ -14,7 +14,7 @@ export default function Producto({ id }) {
 
     async function obtenerRepuesto(id) {
         try {
-            const response = await fetch(`tu_api_para_obtener_repuesto/${id}`);
+            const response = await fetch(`repuesto/${id}`);
             const data = await response.json();
             setRepuesto(data);
             setLoading(false);

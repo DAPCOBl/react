@@ -47,7 +47,6 @@ function RepuestosList() {
   return (
     <div>
       <h1>Lista de Repuestos</h1>
-      {error && <p>{error}</p>}
       <ul>
         {repuestos.map(repuesto => (
           <li key={repuesto._id}>

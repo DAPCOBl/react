@@ -1,11 +1,12 @@
-"use client"
-import DetailsRepuesto from '../../components/DetailsRepuesto';
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import DetailsRepuesto from '../../components/DetailsRepuesto';
 
 export default function RepuestoPage() {
-    return (
-        <div>
-            <DetailsRepuesto />
-        </div>
-    );
+  const { id } = useParams();
+  return (
+    <div>
+      <DetailsRepuesto id={id} />
+    </div>
+  );
 }
