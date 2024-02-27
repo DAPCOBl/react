@@ -49,7 +49,7 @@ h5 {
     font-size: 1.2em !important;
 }
 
-.hero__container container h1 {
+.hero__container h1 {
     font-size: 3em !important;
     font-weight: none !important;
 }
@@ -60,16 +60,15 @@ body {
     text-align: center;
 }
 
-.container {
-    width: 90%;
+.hero-container-label {
     margin: 0 auto;
-    overflow: hidden;
-    padding: var(--padding-container);
+    max-width: 1280px;
+    width: 90%;
 }
 
 .hero {
     width: 100%;
-    height: 1000px;
+    height: 900px;
     position: relative;
     display: grid;
     grid-template-rows: 100px 1fr;
@@ -87,7 +86,7 @@ body {
     height: 90%;
     background-image: linear-gradient(180deg, #000000a9 0%, #000000b9 100%), url('/IMG/Fondo.jpeg');
     background-size: cover;
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 70% 95%, 30% 95%, 0 85%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 70% 100%, 30% 100%, 0 85%);
     z-index: -1;
 }
 
@@ -171,13 +170,12 @@ body {
 /* Hero container */
 
 .hero__container {
-    max-width: 800px;
+    max-width: 100px;
     --padding-container: 0;
     display: grid;
     grid-auto-rows: max-content;
     align-content: center;
     gap: 1em;
-    padding-bottom: 100px;
     text-align: center;
 }
 
@@ -253,7 +251,6 @@ body {
 
 .sedes {
     font-family: 'Francois' Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
-    margin-top: 10px;
     text-align: center;
 }
 
@@ -1133,7 +1130,7 @@ input[type="checkbox" i] {
     padding-top: 8px;
 }
 
-/***************** ListRepuestos.css ********************/
+/***************** ListRepuestos ********************/
 
 .repuesto-filter {
     width: 30%;
@@ -1158,7 +1155,7 @@ input[type="checkbox" i] {
     display: none;
 }
 
-.input-filter .active{
+.input-filter:checked{
     display: flex;
 }
 

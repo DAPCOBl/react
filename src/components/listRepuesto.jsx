@@ -17,11 +17,6 @@ function ListRepuestos() {
             setRepuestos(repuestosData);
             setRepuestosFiltrados(repuestosData);
         } catch (error) {
-            setError = Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Error al cargar los repuestos"
-              });
         }
     };
 
@@ -46,12 +41,9 @@ function ListRepuestos() {
         const tipoRepuesto = event.target.value;
         if (event.target.checked) {
             setTiposRepuestoFiltrados([...tiposRepuestoFiltrados, tipoRepuesto]);
-
         } else {
             setTiposRepuestoFiltrados(tiposRepuestoFiltrados.filter(item => item !== tipoRepuesto));
-            var inputFilter = document.getElementById(`${marca}-marca`);
-            inputFilter.style.display= 'flex';
-
+            var inputFilter = document.getElementById(`${tipoRepuesto}-tipoRepuesto`);
         }
     };
 
@@ -72,6 +64,8 @@ function ListRepuestos() {
     const tiposRepuestoUnicos = [...new Set(repuestos.map(repuesto => repuesto.tipoRepuesto))];
 
     return (
+        <div>
+            <h1>REPUESTOS</h1>
         <div className='container-repuesto-filter'>
             <div className='repuesto-filter'>
                 <ul>
@@ -127,6 +121,7 @@ function ListRepuestos() {
                     ))}
                 </ul>
             </div>
+        </div>
         </div>
     );
 }
