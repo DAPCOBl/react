@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const { urlImg, nombre, descripcionRepuesto, referencia, precio, modelo, marca, tipoRepuesto, tipoGarantia, condicion  } = await req.json();
+    const { urlImg, nombre, descripcionRepuesto, referencia, precio, modelo, marca, tipoRepuesto, tipoGarantia, condicion, user  } = await req.json();
     await connectMongoDB();
-    await Repuesto.create({ urlImg, nombre, descripcionRepuesto, referencia, precio, modelo, marca, tipoRepuesto, tipoGarantia, condicion });
+    await Repuesto.create({ urlImg, nombre, descripcionRepuesto, referencia, precio, modelo, marca, tipoRepuesto, tipoGarantia, condicion,user });
 
     return NextResponse.json({ message: "Repuesto registrado." }, { status: 201 });
   } catch (error) {

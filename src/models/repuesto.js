@@ -43,6 +43,12 @@ const RepuestoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    user: {
+      name: {
+        type: String,
+        required: false,
+      },
+    }
   },
   { timestamps: true }
 );

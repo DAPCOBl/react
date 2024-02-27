@@ -2,8 +2,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation"
 import Swal from "sweetalert2";
+import { useSession} from 'next-auth/react';
 
 export default function CreateRepuesto() {
+  const { data: session } = useSession();
   const [urlImg, setUrlImg] = useState("");
   const [nombre, setNombre] = useState("");
   const [descripcionRepuesto, setDescripcionRepuesto] = useState("");
@@ -31,7 +33,7 @@ export default function CreateRepuesto() {
     try {
 
 
-      const res = await fetch("api/repuesto", {
+      const res = await fetch("../api/repuesto", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,6 +49,7 @@ export default function CreateRepuesto() {
           tipoRepuesto,
           tipoGarantia,
           condicion,
+          user: { name: session.user.name },
         }),
       });
 
@@ -55,31 +58,36 @@ export default function CreateRepuesto() {
         form.reset();
         router.push("/");
       } else {
-        console.log("Repuesto registrado fallido.");
+        Swal.fire({
+          icon: "error",
+          title: "Registro fallido.",
+          text: "Repuesto ya registrado o hay un error en el servidor.",
+        });
       }
     } catch (error) {
-      console.log("Error during registration: ", error);
+      Swal.fire({
+        icon: "error",
+        title: "Proceso de registro fallido",
+      });
     }
   };
 
   const handleImageChange = async () => {
     const { value: file } = await Swal.fire({
-      title: "Select image",
+      title: "Selecciona la Imagen",
       input: "file",
       inputAttributes: {
-        "accept": "image/*",
-        "aria-label": "Upload your profile picture"
+        "accept": "image/*"
       }
     });
 
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setUrlImg(e.target.result); // Actualizar el estado con la URL de la imagen
+        setUrlImg(e.target.result);
         Swal.fire({
-          title: "Your uploaded picture",
+          title: "La imagen ha sido cargada",
           imageUrl: e.target.result,
-          imageAlt: "The uploaded picture"
         });
       };
       reader.readAsDataURL(file);
