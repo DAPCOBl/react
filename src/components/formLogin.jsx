@@ -15,6 +15,15 @@ export default function LoginForm() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      Swal.fire({
+        icon: "warning",
+        title: "Login invalido",
+        text: "Rellene  todos los campos.",
+      });
+      return;
+    }
   
     try {
       const res = await signIn("credentials", {
@@ -24,15 +33,15 @@ export default function LoginForm() {
       });
   
       if (res.error) {
-        setError = Swal.fire({
+        Swal.fire({
           icon: "error",
-          title: "Oops...",
+          title: "Error",
           text: "Usuario invalido"
         });
         return;
       }
       
-      router.replace("admin");
+      router.replace("../");
     } catch (error) {
       console.log(error);
     }

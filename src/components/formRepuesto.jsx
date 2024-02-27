@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation"
+import Swal from "sweetalert2";
 
 export default function CreateRepuesto() {
   const [urlImg, setUrlImg] = useState("");
@@ -14,17 +15,21 @@ export default function CreateRepuesto() {
   const [tipoGarantia, setTipoGarantia] = useState("");
   const [condicion, setCondicion] = useState("");
   const router = useRouter();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!urlImg || !nombre) {
-      setError("TODOS LOS CAMPOS SON NECESARIOS");
+    if (!urlImg || !nombre || !descripcionRepuesto || !referencia || !precio || !modelo || !marca || !tipoRepuesto || !tipoGarantia || !condicion) {
+      Swal.fire({
+        icon: "warning",
+        title: "Registro invalido",
+        text: "Rellene  todos los campos.",
+      });
       return;
     }
 
     try {
-      
+
 
       const res = await fetch("api/repuesto", {
         method: "POST",
@@ -57,16 +62,26 @@ export default function CreateRepuesto() {
     }
   };
 
-  const handleImageChange = async (e) => {
-    const file = e.target.files[0];
+  const handleImageChange = async () => {
+    const { value: file } = await Swal.fire({
+      title: "Select image",
+      input: "file",
+      inputAttributes: {
+        "accept": "image/*",
+        "aria-label": "Upload your profile picture"
+      }
+    });
 
     if (file) {
       const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setUrlImg(reader.result);
+      reader.onload = (e) => {
+        setUrlImg(e.target.result); // Actualizar el estado con la URL de la imagen
+        Swal.fire({
+          title: "Your uploaded picture",
+          imageUrl: e.target.result,
+          imageAlt: "The uploaded picture"
+        });
       };
-
       reader.readAsDataURL(file);
     }
   };
@@ -77,11 +92,11 @@ export default function CreateRepuesto() {
         <h1>Registrar Repuesto</h1>
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+          
+          
+        <button type="button" onClick={handleImageChange}>Seleccionar Imagen</button>
+
+
           <input
             onChange={(e) => setNombre(e.target.value)}
             type="text"

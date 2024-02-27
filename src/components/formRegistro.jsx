@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 export default function RegisterForm() {
   const [name, setName] = useState("");
@@ -11,7 +12,7 @@ export default function RegisterForm() {
   const [numPhone, setNumPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error] = useState("");
 
   const router = useRouter();
 
@@ -19,7 +20,11 @@ export default function RegisterForm() {
     e.preventDefault();
 
     if (!name || !surname || !numPhone || !numDoc || !email || !password) {
-      setError("TODOS LOS CAMPOS SON NECESARIOS.");
+      Swal.fire({
+        icon: "warning",
+        title: "Registro invalido",
+        text: "Rellene  todos los campos.",
+      });
       return;
     }
 
@@ -35,7 +40,11 @@ export default function RegisterForm() {
       const { user } = await resUserExists.json();
 
       if (user) {
-        setError("EL USUARIO YA EXISTE.");
+        Swal.fire({
+          icon: "warning",
+          title: "Registro invalido",
+          text: "Usuario ya registrado"
+        });
         return;
       }
 
