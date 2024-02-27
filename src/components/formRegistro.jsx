@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
 export default function RegisterForm() {
+  const [accept, setAccept] = useState(false); 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [numDoc, setNumDoc] = useState("");
@@ -18,6 +19,15 @@ export default function RegisterForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!accept) {
+      Swal.fire({
+        icon: "warning",
+        title: "Terminos y condiciones",
+        text: "Debes aceptar los términos y condiciones.",
+      });
+      return;
+    }
 
     if (!name || !surname || !numPhone || !numDoc || !email || !password) {
       Swal.fire({
@@ -111,7 +121,20 @@ export default function RegisterForm() {
             type="password"
             placeholder="Password"
           />
-          <button >
+
+          <label>
+            <input
+              type="checkbox"
+              checked={accept}
+              onChange={(e) => setAccept(e.target.checked)}
+            />
+            Aceptar terminos y condiciones
+            <Link href={"https://docs.google.com/document/d/1cKQA_UCWIydGg9bC0FvDXBpeV-iScx_11a9XxwyceyE/edit?usp=sharing"}>
+            Terminos y condiciones
+          </Link>
+          </label>
+
+          <button>
             Registrate
           </button>
 
