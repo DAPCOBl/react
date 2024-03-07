@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 function ListRepuestos() {
     const [repuestos, setRepuestos] = useState([]);
-    const [error] = useState(null);
     const [marcasFiltradas, setMarcasFiltradas] = useState([]);
     const [tiposRepuestoFiltrados, setTiposRepuestoFiltrados] = useState([]);
     const [repuestosFiltrados, setRepuestosFiltrados] = useState([]);
@@ -66,62 +66,64 @@ function ListRepuestos() {
     return (
         <div>
             <h1>REPUESTOS</h1>
-        <div className='container-repuesto-filter'>
-            <div className='repuesto-filter'>
-                <ul>
-                    <div className='title-filter'>
-                        <h2>FILTRAR POR</h2>
-                    </div>
-                    <li>
-                        <h4>Marca</h4>
-                        {marcasUnicas.map(marca => (
-                            <div className='cat-filter' key={marca}>
-                                <input className='input-filter'
-                                    type="checkbox"
-                                    id={`${marca}-marca`}
-                                    value={marca}
-                                    onChange={handleMarcaCheckboxChange}
-                                />
-                                <label className='label-filter' htmlFor={`${marca}-marca`}><b>{marca}</b></label>
-                            </div>
-                        ))}
-                    </li>
-                    <li>
-                        <h4>Tipo Repuesto</h4>
-                        {tiposRepuestoUnicos.map(tipoRepuesto => (
-                            <div className='cat-filter' key={tipoRepuesto}>
-                                <input className='input-filter'
-                                    type="checkbox"
-                                    id={`${tipoRepuesto}-tipoRepuesto`}
-                                    value={tipoRepuesto}
-                                    onChange={handleTipoRepuestoCheckboxChange}
-                                />
-                                <label className='label-filter' htmlFor={`${tipoRepuesto}-tipoRepuesto`}><b>{tipoRepuesto}</b></label>
-                            </div>
-                        ))}
-                    </li>
-                </ul>
-            </div>
-            <div className="repuestos-list-container">
-                <ul className="repuestos-list">
-                    {repuestosFiltrados.map(repuesto => (
-                        <li key={repuesto._id} className="repuesto-item">
-                            <div className="repuesto-image-container">
-                                <img
-                                    src={`${repuesto.urlImg}`}
-                                    className="repuesto-image"
-                                    alt={`Imagen de ${repuesto.nombre}`}
-                                />
-                            </div>
-                            <div className="repuesto-details">
-                                <b>{repuesto.nombre}</b>
-                                <p className="repuesto-price">${repuesto.precio}</p>
-                            </div>
+            <div className='container-repuesto-filter'>
+                <div className='repuesto-filter'>
+                    <ul>
+                        <div className='title-filter'>
+                            <h2>FILTRAR POR</h2>
+                        </div>
+                        <li>
+                            <h4>Marca</h4>
+                            {marcasUnicas.map(marca => (
+                                <div className='cat-filter' key={marca}>
+                                    <input className='input-filter'
+                                        type="checkbox"
+                                        id={`${marca}-marca`}
+                                        value={marca}
+                                        onChange={handleMarcaCheckboxChange}
+                                    />
+                                    <label className='label-filter' htmlFor={`${marca}-marca`}><b>{marca}</b></label>
+                                </div>
+                            ))}
                         </li>
-                    ))}
-                </ul>
+                        <li>
+                            <h4>Tipo Repuesto</h4>
+                            {tiposRepuestoUnicos.map(tipoRepuesto => (
+                                <div className='cat-filter' key={tipoRepuesto}>
+                                    <input className='input-filter'
+                                        type="checkbox"
+                                        id={`${tipoRepuesto}-tipoRepuesto`}
+                                        value={tipoRepuesto}
+                                        onChange={handleTipoRepuestoCheckboxChange}
+                                    />
+                                    <label className='label-filter' htmlFor={`${tipoRepuesto}-tipoRepuesto`}><b>{tipoRepuesto}</b></label>
+                                </div>
+                            ))}
+                        </li>
+                    </ul>
+                </div>
+                <div className='repuestos-list-container'>
+                    <ul className='repuestos-list'>
+                        {repuestosFiltrados.map(repuesto => (
+                            <li key={repuesto._id} className='repuesto-item'>
+                                <Link href={`/details/${repuesto._id}/`}>
+                                        <div className='repuesto-image-container'>
+                                            <img
+                                                src={`${repuesto.urlImg}`}
+                                                className='repuesto-image'
+                                                alt={`Imagen de ${repuesto.nombre}`}
+                                            />
+                                        </div>
+                                        <div className='repuesto-details'>
+                                            <b>{repuesto.nombre}</b>
+                                            <p className='repuesto-price'>${repuesto.precio}</p>
+                                        </div>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-        </div>
         </div>
     );
 }

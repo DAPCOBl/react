@@ -1,9 +1,12 @@
+"use client"
 import { useState, useEffect } from 'react';
 import M from 'materialize-css';
 import Loading from '../components/loader';
 import Footer from '../components/footer';
 
-export default function Producto({ id }) {
+import { useParams } from "react-router-dom";
+export default function Producto({}) {
+    const { id } = useParams()
     const [repuesto, setRepuesto] = useState(null);
     const [loading, setLoading] = useState(true);
 
