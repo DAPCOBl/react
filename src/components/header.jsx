@@ -4,6 +4,8 @@ import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css';
 import { useSession, signOut } from 'next-auth/react';
 import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const HeroHeader = () => {
   const { data: session } = useSession();
@@ -33,6 +35,19 @@ const HeroHeader = () => {
     M.toast({ html: mensaje });
   };
 
+  const infoUser = () => {
+    Swal.fire({
+      title: "Información del usuario",
+      icon: 'info',
+      html: `<div style="text-align: left; padding-left: 45px">Name: ${session?.user?.name}<br>Email: ${session?.user?.email}</div>`,
+      showCancelButton: true,
+      cancelButtonText: "Editar",
+      confirmButtonColor: "#FF6A00",
+      cancelButtonColor: "#333",
+    });
+
+  };
+
   return (
     <header className="hero">
       <div className="nab container">
@@ -55,6 +70,17 @@ const HeroHeader = () => {
               <a onClick={() => mostrarToast('Productos')}>Productos</a>
             </h5>
           </li>
+          {session ? (
+            <li className="nab__items">
+              <h5>
+                <a onClick={() => infoUser()}><FontAwesomeIcon icon={faUser} /></a>
+              </h5>
+            </li>
+          ) : (
+            <Link href="/login" className="cta">
+              Iniciar sesión
+            </Link>
+          )}
         </ul>
         <div className="nab__menu">
           <img src="../../public/IMG/LOGO.png" alt="Logo" className="nab__img" />
