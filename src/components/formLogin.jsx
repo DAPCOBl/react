@@ -50,7 +50,6 @@ export default function LoginForm() {
   return (
     <div>
       <div>
-        <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <input
             onChange={(e) => setEmail(e.target.value)}
@@ -62,9 +61,8 @@ export default function LoginForm() {
             type="password"
             placeholder="Contraseña"
           />
-          <button type="submit">Login</button>
+          <button class="button-login" type="submit">Login</button>
           {error && <div>{error}</div>}
-          <Link href={"/register"}>No tienes cuenta? <span>Registrate</span></Link>
         </form>
       </div>
     </div>

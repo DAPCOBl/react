@@ -35,17 +35,24 @@ const HeroHeader = () => {
     M.toast({ html: mensaje });
   };
 
-  const infoUser = () => {
-    Swal.fire({
+  const infoUser = async () => {    const result = await Swal.fire({
       title: "Información del usuario",
       icon: 'info',
       html: `<div style="text-align: left; padding-left: 45px">Name: ${session?.user?.name}<br>Email: ${session?.user?.email}</div>`,
       showCancelButton: true,
-      cancelButtonText: "Editar",
-      confirmButtonColor: "#FF6A00",
-      cancelButtonColor: "#333",
+      confirmButtonText: "Edit",
+      cancelButtonText: "Ok",
+      confirmButtonColor: "#333",
+      cancelButtonColor: "#FF6A00",
     });
 
+    if (result.isConfirmed) {
+      editUser();
+    }
+  };
+  
+  const editUser = () => {
+    window.location.href = "/userActualizar";
   };
 
   return (

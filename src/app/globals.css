@@ -1472,6 +1472,125 @@ input[type="checkbox" i] {
     align-items: center;
 }
 
+/************LOGIN FULL*************/
+.containLogin{
+    width: 70%;
+    height: 450px;
+    max-width: 900px;
+    background-color: #333;
+    margin: auto;
+    margin-top: 8%;
+    border-radius: 20px;
+    justify-content: space-between;
+    display: flex;
+    min-width: 100px;
+    min-height: 50vh;
+    
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.166);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    
+    padding: 30px;
+    box-sizing: border-box;
+    overflow: hidden
+    
+}
+
+.inpLogin input{
+    max-width: 300px;
+    min-width: 400px;
+    padding: 30px 30px 30px 30px;
+    font-size: 200%;
+    margin-top: 65px;
+    background-color: #cccccc;
+    font-family: 'Overpass', sans-serif;
+    color: #000000;
+   
+    
+    font-family: 'Overpass', sans-serif;
+    font-size: 110%;
+    color: #FF6A00;
+    
+    display: block;
+    height: 50px;
+    
+    margin-bottom: 100px;
+    padding: 5px 5px 5px 10px;
+    
+    box-sizing: border-box;
+    
+    opacity: 5;
+    filter: alpha(opacity=1);
+}
+
+.tituloLogin {
+    background-color: #333;
+    width: 35%;
+    margin: auto;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 300%;
+    color:#cccccc;
+    border-bottom: 1px solid #FF6A00;
+    text-align: center;
+    position: relative; 
+    top: -50px; 
+    left: 20px; 
+
+}
+
+.button-login {
+    font-size: 20px;
+    color: #FFF;
+    text-decoration: none;
+    font-family: 'Francois' Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    background-color: #FF6A00;
+    height: 50px;
+    text-align: center;
+    padding: 0px 20px;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    text-transform: capitalize;
+    position: absolute;
+    top: 76%;
+    left: 26%;
+    transform: translate(-50%, -50%);
+    }
+
+.register-button {
+    position: absolute;
+    top: 140%;
+    left: -5%;
+    transform: translate( 20%, -100%); 
+    transition: all 0.3s ease;
+    font-size: 20px; 
+    font-weight: 10;
+    color: grey; 
+}
+
+.Boton-Google{
+    font-size: 20px;
+    color: #FFF;
+    text-decoration: none;
+    font-family: 'Francois' Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    background-color: #FF6A00;
+    height: 50px;
+    text-align: center;
+    padding: 0px 20px;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    text-transform: capitalize;
+    position: absolute;
+    top: 76%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+
 @media (max-width: 800px) {
     .hero::before {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);

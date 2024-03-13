@@ -22,19 +22,18 @@ export default function Login() {
   }, [session]);
   return (
     <html lang="es">
-      <head>
-        <title>Login</title>
-      </head>
       <body>
         <div class="containLogin">
           <div class="inpLogin">
             <LoginForm />
           </div>
-          <div className="tituloLogin">BIENVENIDO TALLER JM</div>
+          <div className="tituloLogin">BIENVENIDO TALLER JM
+          <Link href={"/register"}  class="register-button" >No tienes cuenta? <span>Registrate</span></Link>
+          </div>
           {showWelcome ? (
-            <Link class="cta" href="../">Ir a la pagina</Link>
+       <Link class="Boton-Google" href="../">Ir a la página</Link>
           ) : (
-            <button className="cta" onClick={() => signIn('google')}>
+            <button className="Boton-Google" onClick={() => signIn('google')}>
               Acceder con Google
             </button>
           )}
