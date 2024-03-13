@@ -1,5 +1,5 @@
 "use client"
-import Header from '../components/header'
+import Heade from '../components/header'
 import Sedes from '../components/sedes'
 import Servicios from '../components/servicios'
 import Provedores from '../components/provedores'
@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div>
-      <Header />
+      <Heade />
       <Sedes />
       <ListRepuesto />
       <Servicios />
