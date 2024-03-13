@@ -95,16 +95,11 @@ export default function CreateRepuesto() {
   };
 
   return (
-    <div>
-      <div>
+    <div>    
+    <div className="Registrar">
         <h1>Registrar Repuesto</h1>
 
         <form onSubmit={handleSubmit}>
-          
-          
-        <button type="button" onClick={handleImageChange}>Seleccionar Imagen</button>
-
-
           <input
             onChange={(e) => setNombre(e.target.value)}
             type="text"
@@ -113,7 +108,7 @@ export default function CreateRepuesto() {
           <input
             onChange={(e) => setDescripcionRepuesto(e.target.value)}
             type="text"
-            placeholder="DescripcionRepuesto"
+            placeholder="DescripciónRepuesto"
           />
           <input
             onChange={(e) => setReferencia(e.target.value)}
@@ -143,16 +138,17 @@ export default function CreateRepuesto() {
           <input
             onChange={(e) => setTipoGarantia(e.target.value)}
             type="text"
-            placeholder="TipoGarantia"
+            placeholder="TipoGarantía"
           />
           <input
             onChange={(e) => setCondicion(e.target.value)}
             type="text"
-            placeholder="Condicion"
+            placeholder="Condición"
           />
+          <button type="button" onClick={handleImageChange}>Seleccionar Imagen</button>
           <button type="submit">Agregar Repuesto</button>
         </form>
-      </div>
+      </div> 
     </div>
   );
 }

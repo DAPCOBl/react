@@ -1531,3 +1531,142 @@ input[type="checkbox" i] {
         transform: translate3d(calc(-100% * 2), 0, 0);
     }
 }
+/********************************************************Registro Repuesto********************************************************/
+.Registrar {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+    background-color: #333;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 48vh;
+    transform: translateY(-49%);
+  }
+  
+  .Registrar h1 {
+    color: #FF6A00;
+    text-align: center;
+    margin-bottom: 9px;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .Registro form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-bottom: 400px; 
+  }
+  
+  .Registrar input[type="text"],
+  .Registrar button {
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: calc(30% - 10px); 
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    margin-right: 10px;
+  }
+  
+  .Registrar button {
+    padding: 8px 16px;
+    background-color: #ff6a00;
+    color: #ffffff;
+    border: none;
+    border-radius: 90px;
+    cursor: pointer;
+  }
+  
+  .Registrar button:not(:last-child) {
+    margin-right: 10px;
+  }
+  
+  .Registrar button:hover {
+    background-color: #e65c00;
+  }
+  .btn-orange {
+    background-color: #e65c00 !important;
+    color: white !important;
+  }
+
+  .boton-orange{
+    background-color: #e65c00 !important;
+    color: white !important;
+  }
+
+  .buton-orange{
+    background-color: #e65c00 !important;
+    color: white !important;
+  }
+  /********************************************************REGISTRO********************************************************/
+  .REGISTRO {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+    background-color: #000000;
+    box-shadow: 0px 2px 4px rgba(255, 254, 254, 0.1);
+    margin-top: 50vh;
+    transform: translateY(-50%);
+  }  
+  
+  .REGISTRO h1 {
+    color: #FF6A00;
+    text-align: center;
+    margin-bottom: 9px;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .REGISTRO form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .REGISTRO input,
+  .REGISTRO button{
+    margin-bottom: 10px;
+  }
+  
+  .REGISTRO label {
+    margin-bottom: 10px;
+  }
+  .REGISTRO button {
+    padding: 10px;
+    background-color: #ff6a00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .REGISTRO button:hover {
+    background-color: #929090;
+  }
+  
+  .REGISTRO label input[type="checkbox"] {
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  
+  .REGISTRO label a {
+    margin-left: 5px;
+    color: #929090;
+  }
+  
+  .REGISTRO label a:hover {
+    text-decoration: underline;
+  }

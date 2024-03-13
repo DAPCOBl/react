@@ -87,68 +87,69 @@ export default function RegisterForm() {
 
   return (
     <div>
-      <div>
-        <h1>Register</h1>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Name"
-          />
-          <input
-            onChange={(e) => setSurname(e.target.value)}
-            type="text"
-            placeholder="Surname"
-          />
-          <input
-            onChange={(e) => setNumDoc(e.target.value)}
-            type="number"
-            placeholder="Número de Documento"
-          />
-          <input
-            onChange={(e) => setNumPhone(e.target.value)}
-            type="number"
-            placeholder="Número de celular"
-          />
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            type="text"
-            placeholder="Email"
-          />
-          <input
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="Password"
-          />
+    <div className="REGISTRO">
+      <h1>REGISTRO</h1>
 
-          <label>
-            <input
-              type="checkbox"
-              checked={accept}
-              onChange={(e) => setAccept(e.target.checked)}
-            />
-            Aceptar terminos y condiciones
-            <Link href={"https://docs.google.com/document/d/1cKQA_UCWIydGg9bC0FvDXBpeV-iScx_11a9XxwyceyE/edit?usp=sharing"}>
-            Terminos y condiciones
-          </Link>
-          </label>
+      <form onSubmit={handleSubmit}>
+        <input
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          placeholder="Name"
+        />
+        <input
+          onChange={(e) => setSurname(e.target.value)}
+          type="text"
+          placeholder="Surname"
+        />
+        <input
+          onChange={(e) => setNumDoc(e.target.value)}
+          type="number"
+          placeholder="Número de Documento"
+        />
+        <input
+          onChange={(e) => setNumPhone(e.target.value)}
+          type="number"
+          placeholder="Número de celular"
+        />
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="Email"
+        />
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          placeholder="Password"
+        />
 
-          <button>
-            Registrate
-          </button>
+        <label>
+          <input
+            type="checkbox"
+            checked={accept}
+            onChange={(e) => setAccept(e.target.checked)}
+          />
+          Aceptar terminos y condiciones
+          <Link href={"https://docs.google.com/document/d/1cKQA_UCWIydGg9bC0FvDXBpeV-iScx_11a9XxwyceyE/edit?usp=sharing"}>
+          Terminos y condiciones
+        </Link>
+        </label>
 
-          {error && (
-            <div>
-              {error}
-            </div>
-          )}
+        <button>
+          Registrate
+        </button>
 
-          <Link href={"/"}>
-            Ya tienes cuenta? <span>Login</span>
-          </Link>
-        </form>
-      </div>
+        {error && (
+          <div>
+            {error}
+          </div>
+        )}
+
+        <Link href={"/"}>
+          Ya tienes cuenta? <span>Login</span>
+        </Link>
+      </form>
     </div>
-  );
+  </div>
+);
 }
