@@ -55,6 +55,10 @@ const HeroHeader = () => {
     window.location.href = "/userActualizar";
   };
 
+  const Sedes = () => {
+    window.location.href = "/sedes";
+  };
+
   return (
     <header className="hero">
       <div className="nab container">
@@ -64,7 +68,7 @@ const HeroHeader = () => {
         <ul className="nab__link nab__link--menu">
           <li className="nab__items">
             <h5>
-              <a onClick={() => mostrarToast('Sedes')}>Sedes</a>
+              <a onClick={() => Sedes()}>Sedes</a>
             </h5>
           </li>
           <li className="nab__items">

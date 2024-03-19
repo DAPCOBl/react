@@ -46,6 +46,12 @@ const RepuestoSchema = new mongoose.Schema(
     user: {
       name: {
         type: String,
+        required: true,
+      },
+    },
+    bodega: {
+      sede: {
+        type: String,
         required: false,
       },
     }

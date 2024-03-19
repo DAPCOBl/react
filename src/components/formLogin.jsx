@@ -1,18 +1,33 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Swal from 'sweetalert2';
 
 export default function LoginForm() {
+  const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error] = useState("");
-  
+  const [password, setPassword] = useState("");;
+
   const router = useRouter();
-  
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch('../api/register');
+      const data = await response.json();
+      setUsers(data);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -24,14 +39,14 @@ export default function LoginForm() {
       });
       return;
     }
-  
+
     try {
       const res = await signIn("credentials", {
         email,
         password,
         redirect: false
       });
-  
+
       if (res.error) {
         Swal.fire({
           icon: "error",
@@ -40,8 +55,6 @@ export default function LoginForm() {
         });
         return;
       }
-      
-      router.replace("../");
     } catch (error) {
       console.log(error);
     }

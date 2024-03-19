@@ -18,3 +18,38 @@ export async function POST(req) {
     );
   }
 }
+
+export async function GET() {
+  try {
+    const results = await User.find({});
+
+    const mappedResults = results.map(result => ({
+      _id: result._id,
+      name: result.name,
+      surname: result.surname,
+      numDoc: result.numDoc,
+      numPhone: result.numPhone,
+      email: result.email,
+      password: result.password,
+      rol: {
+        descripcionRol: result.rol.descripcionRol,
+        estado: result.rol.estado,
+      },
+      tipoDoc: {
+        descripcionTipoDoc: result.tipoDoc.descripcionTipoDoc,
+      },
+    }));
+
+    return NextResponse.json(mappedResults);
+  } catch (error) {
+    console.log('Error: ', error);
+    return NextResponse.json(
+      {
+        message: error.message,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+}

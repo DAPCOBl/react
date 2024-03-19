@@ -1,54 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+"use client";
 
-function ListRepuestos() {
-    const [repuestos, setRepuestos] = useState([]);
-    const [repuestosFiltrados, setRepuestosFiltrados] = useState([]);
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
-    const fetchRepuestos = async () => {
+export default function EditBodegaForm({ _id, name, direccion,numPhone }) {
+    const [newName, setNewName] = useState(name);
+    const [newDireccion, setNewDireccion] = useState(direccion);
+    const [newNumPhone, setNewNumPhone] = useState(numPhone);
+
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
         try {
-            const response = await fetch('../api/repuesto');
-            if (!response.ok) {
-                throw new Error('Error al obtener los datos de los repuestos');
+            const res = await fetch(`/api/bodega/${_id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-type": "application/json",
+                },
+                body: JSON.stringify({ newName, newDireccion, newNumPhone }),
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to update topic");
             }
-            const repuestosData = await response.json();
-            setRepuestos(repuestosData);
-            setRepuestosFiltrados(repuestosData);
+
+            router.refresh();
+            router.push("/");
         } catch (error) {
-            console.error(error);
+            console.log(error);
         }
     };
 
-    useEffect(() => {
-        fetchRepuestos();
-    }, []);
-
     return (
-        <div>
-            <h1>REPUESTOS</h1>
-            <div className='container-repuesto-list'>
-                <div className='repuestos-list'>
-                    {repuestosFiltrados.map(repuesto => (
-                        <li key={repuesto._id} className='repuesto-item'>
-                            <Link href={`/details/${repuesto._id}/`}>
-                                <div className='repuesto-image-container'>
-                                    <img
-                                        src={`${repuesto.urlImg}`}
-                                        className='repuesto-image'
-                                        alt={`Imagen de ${repuesto.nombre}`}
-                                    />
-                                </div>
-                                <div className='repuesto-details'>
-                                    <b>{repuesto.nombre}</b>
-                                    <p className='repuesto-price'>${repuesto.precio}</p>
-                                </div>
-                            </Link>
-                        </li>
-                    ))}
-                </div>
-            </div>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <input
+                onChange={(e) => setNewName(e.target.value)}
+                value={newName}
+                type="text"
+                placeholder="Bodega Name"
+            />
+            <input
+                onChange={(e) => setNewDireccion(e.target.value)}
+                value={newDireccion}
+                type="text"
+                placeholder="Bodega Direccion"
+            />
+            <input
+                onChange={(e) => setNewNumPhone(e.target.value)}
+                value={newNumPhone}
+                type="text"
+                placeholder="Bodega NumPhone"
+            />
+            <button>
+                Update Bodega
+            </button>
+        </form>
     );
 }
-
-export default ListRepuestos;

@@ -29,7 +29,7 @@ const userSchema = new Schema(
     rol: {
       descripcionRol: {
         type: String,
-        default: null,
+        default: 'client',
       },
       estado: {
         type: String,

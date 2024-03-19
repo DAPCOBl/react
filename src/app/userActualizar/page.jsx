@@ -6,116 +6,74 @@ import { useSession } from 'next-auth/react';
 export default function RegisterForm() {
   const { data: session } = useSession();
   const [user, setUser] = useState(null);
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [numDoc, setNumDoc] = useState('');
-  const [numPhone, setNumPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-
   useEffect(() => {
     if (session) {
       obtenerUser(session.user.email);
     }
   }, [session]);
-
-  const obtenerUser = async (email) => {
-    try {
-      const response = await fetch('/api/register/${email}');
-      const data = await response.json();
-      if (response.ok) {
-        setName(data.name);
-        setSurname(data.surname);
-        setNumDoc(data.numDoc);
-        setNumPhone(data.numPhone);
-      } else {
-        setError('Error al obtener el usuario.');
-      }
-    } catch (error) {
-      console.error('Error al obtener el usuario:', error);
-      setError('Error al obtener el usuario.');
-    }
+//
+  const UserEdit = (email) => {
+    const user = users.find(user => user.email === email);
+    setBodegaEdit(prevState => ({ ...prevState, ...user }));
   };
 
-  const handleSubmit = async (e) => {
+  const UserEditSend = async (userEdit) => {
     e.preventDefault();
-
-    const formData = {
-      name,
-      surname,
-      numDoc,
-      numPhone,
-    };
-
     try {
-      const response = await fetch('api/register/${email}', {
+      const response = await fetch(`/api/user/${userEdit.email}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(userEdit)
       });
-
-      if (response.ok) {
-        const form = e.target;
-        form.reset();
-        router.push('/');
-      } else {
-        console.log('User actualizado fallido.');
+      if (!response.ok) {
+        throw new Error('Error al editar el user');
       }
+      const updatedBodega = await response.json();
+      fetchBodegas();
+      setBodegaEdit(null);
     } catch (error) {
-      console.log('Error durante la actualización: ', error);
     }
   };
 
   return (
-    <div>
-      <div>
+    <div className="Registrar-Bodega">
+      <div className="Registrar Bodega">
         <h1>Actualizar</h1>
-
-        <form onSubmit={handleSubmit}>
+        {UserEdit && (
+      <div className="Registrar datatableBodega">
+        <h1>EDIT BODEGA</h1>
+        <form>
           <input
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setBodegaEdit(prevState => ({ ...prevState, name: e.target.value }))}
             type="text"
-            placeholder="Name"
-            value={name}
+            placeholder="name"
+            value={UserEdit.name}
           />
           <input
-            onChange={(e) => setSurname(e.target.value)}
+            onChange={(e) => setBodegaEdit(prevState => ({ ...prevState, surname: e.target.value }))}
             type="text"
-            placeholder="Surname"
-            value={surname}
+            placeholder="surname"
+            value={UserEdit.surname}
           />
           <input
-            onChange={(e) => setNumDoc(e.target.value)}
-            type="number"
-            placeholder="Número de Documento"
-            value={numDoc}
-          />
-          <input
-            onChange={(e) => setNumPhone(e.target.value)}
-            type="number"
-            placeholder="Número de celular"
-            value={numPhone}
-          />
-          <input
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setBodegaEdit(prevState => ({ ...prevState, numDoc: e.target.value }))}
             type="text"
-            placeholder="Email"
-            value={email}
+            placeholder="numDoc"
+            value={UserEdit.numDoc}
           />
           <input
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="Password"
-            value={password}
+            onChange={(e) => setuserEdit(prevState => ({ ...prevState, numPhone: e.target.value }))}
+            type="text"
+            placeholder="numPhone"
+            value={UserEdit.numPhone}
           />
-
-          <button>
-            Actualizar
-          </button>
-
+          <button onClick={() => UserEditSend(user._id)} type="submit">Editar Bodega</button>
+        </form>
+      </div>
+      )}
           {error && (
             <div>
               {error}
@@ -125,7 +83,6 @@ export default function RegisterForm() {
           <Link href={"/"}>
             <span>Cancelar</span>
           </Link>
-        </form>
       </div>
     </div>
   );

@@ -1,36 +1,38 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'next/navigation';
 
 export default function Producto() {
-  const { repuestoId } = useParams();
-  console.log('ID del producto:', repuestoId);
+  const params = useParams();
+  console.log(params._id);
   const [repuesto, setRepuesto] = useState(null);
 
- useEffect(() => {
+  useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`/api/repuestos/${repuestoId}`);
+        const response = await fetch(`../api/repuesto/${params._id}`);
         if (!response.ok) {
           throw new Error('Error al cargar los datos');
         }
         const data = await response.json();
         setRepuesto(data);
+        console.log('entro');
       } catch (error) {
         console.error('Error al cargar los datos del producto:', error);
       }
     }
     fetchData();
- }, [repuestoId]); 
+  }, [params._id]);
 
- if (!repuesto) {
-    return <div>Loading...</div>;
- }
-
- return (
+  return (
     <div>
-      <h1>{repuesto.nombre}</h1> {/* Asegúrate de que el nombre de la propiedad coincida con los datos que estás recibiendo */}
-      <p>{repuesto.descripcion}</p> {/* Asegúrate de que el nombre de la propiedad coincida con los datos que estás recibiendo */}
+      <h1>Producto</h1>
+      {repuesto && (
+        <>
+          <h1>{repuesto.nombre}</h1>
+          <p>{repuesto.descripcionRepuesto}</p>
+        </>
+      )}
     </div>
- );
+  );
 }

@@ -1155,7 +1155,7 @@ input[type="checkbox" i] {
     display: none;
 }
 
-.input-filter:checked{
+.input-filter:checked {
     display: flex;
 }
 
@@ -1216,7 +1216,7 @@ input[type="checkbox" i] {
 }
 
 /**********************LOADER**********************/
-.img-loader{
+.img-loader {
     margin: auto;
     margin-top: 20%;
 }
@@ -1231,51 +1231,51 @@ input[type="checkbox" i] {
 }
 
 
-.details-producto{
+.details-producto {
     display: flex;
     padding: 20px;
     border-block-end: 1px solid rgb(173, 173, 173);
     background: white;
 }
 
-.details-imagen .details-img2{
+.details-imagen .details-img2 {
     display: none;
     height: 300px;
 }
 
-.imagen img{
+.imagen img {
     height: 70%;
     width: 1000px;
 }
 
-.info-pro{
+.info-pro {
     padding: 1px 0 0 40px;
 }
 
-.info-pro h1{
+.info-pro h1 {
     margin: 30px 0 30px 0;
 }
 
-.info-pro h2{
+.info-pro h2 {
     color: #FF6A00;
 }
 
-.contenedor-descripcion{
+.contenedor-descripcion {
     width: 60%;
     margin: auto;
     margin-top: 50px;
 }
 
-.sobre{
+.sobre {
     width: 100%;
-    border-left:6px solid #FF6A00;
+    border-left: 6px solid #FF6A00;
 }
 
-.sobre h1{
+.sobre h1 {
     margin: 0 10px;
 }
 
-.cat{
+.cat {
     margin-top: 40px;
     padding: 0 40px;
     background: white;
@@ -1285,23 +1285,23 @@ input[type="checkbox" i] {
     align-items: center;
 }
 
-.cat-descp{
-    margin: 0  40px 0  0 ;
+.cat-descp {
+    margin: 0 40px 0 0;
     padding: 0 40px 0 0;
     border-right: 1px solid #000000;
     cursor: pointer;
     transition: all .3s;
 }
 
-.cat-espe{
-    margin: 0  40px 0  0 ;
+.cat-espe {
+    margin: 0 40px 0 0;
     padding: 0 40px 0 0;
     border-right: 1px solid #000000;
     cursor: pointer;
     transition: all .3s;
 }
 
-.descripcion{
+.descripcion {
     text-align: left;
     background: white;
     padding-left: 40px;
@@ -1309,31 +1309,31 @@ input[type="checkbox" i] {
     padding-bottom: 50px;
 }
 
-.especificacion{
+.especificacion {
     text-align: left;
     background: white;
     padding-left: 40px;
     padding-right: 40px;
-    padding-bottom: 80px;    
+    padding-bottom: 80px;
     display: none;
 }
 
-.contenido1{
+.contenido1 {
     background: #ebebeb;
     height: 120px;
-    align-items: center;    
+    align-items: center;
 }
 
-.parr{
+.parr {
     margin-bottom: 30px;
 }
 
-.contenido1 .cate{
+.contenido1 .cate {
     width: 50%;
-   
-}   
 
-.titulo{
+}
+
+.titulo {
     width: 50%;
     margin: auto;
     text-align: center;
@@ -1343,26 +1343,26 @@ input[type="checkbox" i] {
     align-items: center;
 }
 
-.raya{
+.raya {
     width: 400px;
     height: 5px;
     background: #FF6A00;
 }
 
-.raya1{
+.raya1 {
     width: 100%;
     height: 5px;
     background: #FF6A00;
 }
 
-.raya2{
+.raya2 {
     width: 100%;
     height: 5px;
     background: #FF6A00;
     display: none;
 }
 
-.container-cards{
+.container-cards {
     justify-content: center;
     display: flex;
 
@@ -1376,7 +1376,7 @@ input[type="checkbox" i] {
     border: 1px solid rgb(221, 221, 221);
     cursor: pointer;
     transition: 0.5s;
-    animation-timing-function: cubic-bezier(0.165,0.84,0.44,1);
+    animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
     overflow: hidden;
 }
 
@@ -1386,46 +1386,51 @@ input[type="checkbox" i] {
     margin-top: 10px;
     transition: 0.5s;
 }
-.cards2  .ima{
+
+.cards2 .ima {
     width: 400px;
     height: 500px;
 }
 
-.cards2 .contenido{
+.cards2 .contenido {
     padding: 30px;
     transition: 0.5s;
     background: white;
-    
+
 }
-.cards2 .contenido a:hover{
-    color:#FF6A00;
+
+.cards2 .contenido a:hover {
+    color: #FF6A00;
     cursor: pointer;
     transition: 0.5s;
 }
-.cards2 .contenido h3{
+
+.cards2 .contenido h3 {
     margin-top: 5px;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     transition: 0.5s;
 }
 
-.cards2 .contenido a{
+.cards2 .contenido a {
     transition: 0.5s;
 }
 
-.cards2 .contenido h4{
+.cards2 .contenido h4 {
     margin-top: 5px;
     font-weight: 200;
     font-family: 'Poppins', sans-serif;
     transition: 0.5s;
 }
-.cards2 .contenido h2{
+
+.cards2 .contenido h2 {
     margin-top: 5px;
     font-weight: 800;
     font-family: 'Poppins', sans-serif;
     transition: 0.5s;
 }
-.boton{
+
+.boton {
     margin-top: 20px;
     color: white;
     background: #FF6A00;
@@ -1438,7 +1443,8 @@ input[type="checkbox" i] {
     font-weight: 800;
     font-family: 'Poppins', sans-serif;
 }
-.boton:hover{
+
+.boton:hover {
     background: #FF6A00;
     box-shadow: 0px -1px 20px rgba(0, 0, 0, 0.2);
     font-weight: 700;
@@ -1472,8 +1478,31 @@ input[type="checkbox" i] {
     align-items: center;
 }
 
+/************Datatable*************/
+
+.container-table {
+    width: 50%;
+    margin-inline: auto;
+}
+
+.container-table a {
+    margin-left: 10px;
+}
+
+.container-table table {
+    border: 1px solid black;
+}
+
+.datatableBodega {
+    margin-top: 30% !important;
+}
+
+.Bodega {
+    margin-top: 10% !important;
+}
+
 /************LOGIN FULL*************/
-.containLogin{
+.containLogin {
     width: 70%;
     height: 450px;
     max-width: 900px;
@@ -1485,22 +1514,21 @@ input[type="checkbox" i] {
     display: flex;
     min-width: 100px;
     min-height: 50vh;
-    
+
     border-radius: 10px 10px 10px 10px;
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
-    
+
     -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.166);
-    -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-    
+    -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.15);
+
     padding: 30px;
     box-sizing: border-box;
     overflow: hidden
-    
 }
 
-.inpLogin input{
+.inpLogin input {
     max-width: 300px;
     min-width: 400px;
     padding: 30px 30px 30px 30px;
@@ -1509,20 +1537,20 @@ input[type="checkbox" i] {
     background-color: #cccccc;
     font-family: 'Overpass', sans-serif;
     color: #000000;
-   
-    
+
+
     font-family: 'Overpass', sans-serif;
     font-size: 110%;
     color: #FF6A00;
-    
+
     display: block;
     height: 50px;
-    
+
     margin-bottom: 100px;
     padding: 5px 5px 5px 10px;
-    
+
     box-sizing: border-box;
-    
+
     opacity: 5;
     filter: alpha(opacity=1);
 }
@@ -1531,14 +1559,14 @@ input[type="checkbox" i] {
     background-color: #333;
     width: 35%;
     margin: auto;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 300%;
-    color:#cccccc;
+    color: #cccccc;
     border-bottom: 1px solid #FF6A00;
     text-align: center;
-    position: relative; 
-    top: -50px; 
-    left: 20px; 
+    position: relative;
+    top: -50px;
+    left: 20px;
 
 }
 
@@ -1559,20 +1587,20 @@ input[type="checkbox" i] {
     top: 76%;
     left: 26%;
     transform: translate(-50%, -50%);
-    }
+}
 
 .register-button {
     position: absolute;
     top: 140%;
     left: -5%;
-    transform: translate( 20%, -100%); 
+    transform: translate(20%, -100%);
     transition: all 0.3s ease;
-    font-size: 20px; 
+    font-size: 20px;
     font-weight: 10;
-    color: grey; 
+    color: grey;
 }
 
-.Boton-Google{
+.Boton-Google {
     font-size: 20px;
     color: #FFF;
     text-decoration: none;
@@ -1590,6 +1618,99 @@ input[type="checkbox" i] {
     left: 40%;
     transform: translate(-50%, -50%);
 }
+
+/************************************Registro Repuesto********************************************************/
+.Registrar {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+    background-color: #333;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 48vh;
+    transform: translateY(-49%);
+}
+
+.Registrar h1 {
+    color: #FF6A00;
+    text-align: center;
+    margin-bottom: 9px;
+}
+
+.Registro form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-bottom: 400px;
+}
+
+.Registrar input[type="text"],
+.Registrar button {
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: calc(30% - 10px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.Registrar input[type="password"],
+.Registrar button {
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: calc(30% - 10px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.Registrar select,
+.Registrar button {
+    padding: 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: calc(30% - 10px);
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.Registrar button {
+    padding: 8px 16px;
+    background-color: #ff6a00;
+    color: #ffffff;
+    border: none;
+    border-radius: 90px;
+    cursor: pointer;
+}
+
+.Registrar button:not(:last-child) {
+    margin-right: 10px;
+}
+
+.Registrar button:hover {
+    background-color: #e65c00;
+}
+
+.btn-orange {
+    background-color: #e65c00 !important;
+    color: white !important;
+}
+
+.boton-orange {
+    background-color: #e65c00 !important;
+    color: white !important;
+}
+
+.buton-orange {
+    background-color: #e65c00 !important;
+    color: white !important;
+}
+
+
+
 
 @media (max-width: 800px) {
     .hero::before {
@@ -1650,142 +1771,3 @@ input[type="checkbox" i] {
         transform: translate3d(calc(-100% * 2), 0, 0);
     }
 }
-/********************************************************Registro Repuesto********************************************************/
-.Registrar {
-    margin: 0 auto;
-    padding: 20px;
-    max-width: 600px;
-    border-radius: 10px;
-    background-color: #333;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    margin-top: 48vh;
-    transform: translateY(-49%);
-  }
-  
-  .Registrar h1 {
-    color: #FF6A00;
-    text-align: center;
-    margin-bottom: 9px;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .Registro form {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    margin-bottom: 400px; 
-  }
-  
-  .Registrar input[type="text"],
-  .Registrar button {
-    padding: 8px;
-    border: 1px solid #333;
-    border-radius: 4px;
-    width: calc(30% - 10px); 
-    box-sizing: border-box;
-    margin-bottom: 20px;
-    margin-right: 10px;
-  }
-  
-  .Registrar button {
-    padding: 8px 16px;
-    background-color: #ff6a00;
-    color: #ffffff;
-    border: none;
-    border-radius: 90px;
-    cursor: pointer;
-  }
-  
-  .Registrar button:not(:last-child) {
-    margin-right: 10px;
-  }
-  
-  .Registrar button:hover {
-    background-color: #e65c00;
-  }
-  .btn-orange {
-    background-color: #e65c00 !important;
-    color: white !important;
-  }
-
-  .boton-orange{
-    background-color: #e65c00 !important;
-    color: white !important;
-  }
-
-  .buton-orange{
-    background-color: #e65c00 !important;
-    color: white !important;
-  }
-  /********************************************************REGISTRO********************************************************/
-  .REGISTRO {
-    margin: 0 auto;
-    padding: 20px;
-    max-width: 600px;
-    border-radius: 10px;
-    background-color: #000000;
-    box-shadow: 0px 2px 4px rgba(255, 254, 254, 0.1);
-    margin-top: 50vh;
-    transform: translateY(-50%);
-  }  
-  
-  .REGISTRO h1 {
-    color: #FF6A00;
-    text-align: center;
-    margin-bottom: 9px;
-  }
-  
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .REGISTRO form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .REGISTRO input,
-  .REGISTRO button{
-    margin-bottom: 10px;
-  }
-  
-  .REGISTRO label {
-    margin-bottom: 10px;
-  }
-  .REGISTRO button {
-    padding: 10px;
-    background-color: #ff6a00;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .REGISTRO button:hover {
-    background-color: #929090;
-  }
-  
-  .REGISTRO label input[type="checkbox"] {
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  
-  .REGISTRO label a {
-    margin-left: 5px;
-    color: #929090;
-  }
-  
-  .REGISTRO label a:hover {
-    text-decoration: underline;
-  }

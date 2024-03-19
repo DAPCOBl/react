@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation"
 import Swal from "sweetalert2";
-import { useSession} from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 export default function CreateRepuesto() {
   const { data: session } = useSession();
@@ -16,7 +16,23 @@ export default function CreateRepuesto() {
   const [tipoRepuesto, setTipoRepuesto] = useState("");
   const [tipoGarantia, setTipoGarantia] = useState("");
   const [condicion, setCondicion] = useState("");
+  const [bodegas, setBodegas] = useState([]);
   const router = useRouter();
+  const [error, setError] = useState(null);
+
+  const fetchBodegas = async () => {
+    try {
+      const response = await fetch('../api/bodega');
+      const data = await response.json();
+      setBodegas(data);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchBodegas();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +49,7 @@ export default function CreateRepuesto() {
     try {
 
 
-      const res = await fetch("../api/repuesto", {
+      const res = await fetch("/api/repuesto", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,6 +66,7 @@ export default function CreateRepuesto() {
           tipoGarantia,
           condicion,
           user: { name: session.user.name },
+          bodega: { sede: bodega.name },
         }),
       });
 
@@ -95,8 +112,8 @@ export default function CreateRepuesto() {
   };
 
   return (
-    <div>    
-    <div className="Registrar">
+    <div>
+      <div className="Registrar">
         <h1>Registrar Repuesto</h1>
 
         <form onSubmit={handleSubmit}>
@@ -145,10 +162,16 @@ export default function CreateRepuesto() {
             type="text"
             placeholder="Condición"
           />
+          <select name="bodega" id="bodega" required>
+            <option value="">Selecciona una bodega</option>
+            {bodegas.map((bodega) => (
+              <option value="{bodega.name}">{bodega.name}</option>
+            ))}
+          </select>
           <button type="button" onClick={handleImageChange}>Seleccionar Imagen</button>
           <button type="submit">Agregar Repuesto</button>
         </form>
-      </div> 
+      </div>
     </div>
   );
 }
