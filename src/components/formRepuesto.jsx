@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation"
 import Swal from "sweetalert2";
 import { useSession } from 'next-auth/react';
 
+
 export default function CreateRepuesto() {
   const { data: session } = useSession();
   const [urlImg, setUrlImg] = useState("");
@@ -12,11 +13,11 @@ export default function CreateRepuesto() {
   const [referencia, setReferencia] = useState("");
   const [precio, setPrecio] = useState("");
   const [modelo, setModelo] = useState("");
-  const [marca, setMarca] = useState("");
   const [tipoRepuesto, setTipoRepuesto] = useState("");
   const [tipoGarantia, setTipoGarantia] = useState("");
   const [condicion, setCondicion] = useState("");
   const [bodegas, setBodegas] = useState([]);
+  const [marcas, setMarcas] = useState([]);
   const router = useRouter();
   const [error, setError] = useState(null);
 
@@ -34,10 +35,26 @@ export default function CreateRepuesto() {
     fetchBodegas();
   }, []);
 
+
+  const fetchMarcas = async () => {
+    try {
+      const response = await fetch('../api/marca');
+      const data = await response.json();
+      setBodegas(data);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchMarcas();
+  }, []);
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!urlImg || !nombre || !descripcionRepuesto || !referencia || !precio || !modelo || !marca || !tipoRepuesto || !tipoGarantia || !condicion) {
+    if (!urlImg || !nombre || !descripcionRepuesto || !referencia || !precio || !modelo || !tipoRepuesto || !tipoGarantia || !condicion) {
       Swal.fire({
         icon: "warning",
         title: "Registro invalido",
@@ -61,12 +78,12 @@ export default function CreateRepuesto() {
           referencia,
           precio,
           modelo,
-          marca,
           tipoRepuesto,
           tipoGarantia,
           condicion,
           user: { name: session.user.name },
           bodega: { sede: bodega.name },
+          marca: { nombre: marca.nombre },
         }),
       });
 
@@ -143,11 +160,6 @@ export default function CreateRepuesto() {
             placeholder="Modelo"
           />
           <input
-            onChange={(e) => setMarca(e.target.value)}
-            type="text"
-            placeholder="Marca"
-          />
-          <input
             onChange={(e) => setTipoRepuesto(e.target.value)}
             type="text"
             placeholder="TipoRepuesto"
@@ -162,12 +174,27 @@ export default function CreateRepuesto() {
             type="text"
             placeholder="Condición"
           />
+
+
+          
           <select name="bodega" id="bodega" required>
             <option value="">Selecciona una bodega</option>
             {bodegas.map((bodega) => (
               <option value="{bodega.name}">{bodega.name}</option>
             ))}
           </select>
+          
+          <select name="marca" id="marca" required>
+            <option value="">Selecciona una marca</option>
+            {marcas.map((marca) => (
+              <option value="{marca.nombre}">{marca.nombre}</option>
+            ))}
+          </select>
+
+
+
+
+
           <button type="button" onClick={handleImageChange}>Seleccionar Imagen</button>
           <button type="submit">Agregar Repuesto</button>
         </form>
