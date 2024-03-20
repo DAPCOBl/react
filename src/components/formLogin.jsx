@@ -9,7 +9,8 @@ import Swal from 'sweetalert2';
 export default function LoginForm() {
   const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");;
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const router = useRouter();
 
