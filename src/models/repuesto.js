@@ -27,10 +27,7 @@ const RepuestoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    marca: {
-      type: String,
-      required: true,
-    },
+    
     tipoRepuesto: {
       type: String,
       required: true,
