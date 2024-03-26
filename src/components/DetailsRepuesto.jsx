@@ -1,8 +1,8 @@
 "use client"
 import { useState, useEffect } from 'react';
 import M from 'materialize-css';
-import Loading from '../components/loader';
-import Footer from '../components/footer';
+import Loading from './loader';
+import Footer from './footer';
 
 import { useParams } from "react-router-dom";
 export default function Producto({}) {

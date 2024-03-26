@@ -1,4 +1,3 @@
- // Importa el modelo de marca desde una ruta específica
 import Marca from '../../../../models/marca';
 
 // Función para manejar solicitudes de eliminación
@@ -37,6 +36,8 @@ export async function DELETE(request, { params }) {
     );
   }
 }
+
+
 // Función para manejar solicitudes de actualización
 export async function PUT(request, { params }) { 
   // Obtiene el nombre de marca de los datos de la solicitud

@@ -8,7 +8,6 @@
     const { data: session } = useSession();
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
-    const [acciones, setAcciones] = useState("");
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -31,8 +30,7 @@
             },
             body: JSON.stringify({
             nombre,
-            descripcion,
-            acciones
+            descripcion
             }),
         });
 
@@ -70,11 +68,6 @@
                 onChange={(e) => setDescripcion(e.target.value)}
                 type="text"
                 placeholder="Descripción"
-            />
-            <input
-                onChange={(e) => setAcciones(e.target.value)}
-                type="text"
-                placeholder="Acciones"
             />
             <button type="submit">Agregar Servicio</button>
             </form>

@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -27,7 +26,6 @@ export default function LoginForm() {
   useEffect(() => {
     fetchUsers();
   }, []);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();

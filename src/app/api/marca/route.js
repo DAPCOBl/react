@@ -1,8 +1,5 @@
-// Importa la función connectMongoDB desde el archivo mongodb en la carpeta lib
 import { connectMongoDB } from "../../../lib/mongodb";
-// Importa el modelo de Marca desde el archivo marca en la carpeta models
 import Marca from "../../../models/marca";
-// Importa la función NextResponse desde el paquete next/server
 import { NextResponse } from "next/server";
 
 // Función para manejar solicitudes POST
