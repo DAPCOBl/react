@@ -60,7 +60,7 @@ const HeroHeader = () => {
   };
 
   const Repuesto = () => {
-    window.location.href = "/repuesto";
+    window.location.href = "/datatableRepuesto";
   };
 
   return (

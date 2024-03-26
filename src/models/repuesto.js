@@ -27,7 +27,6 @@ const RepuestoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    
     tipoRepuesto: {
       type: String,
       required: true,
@@ -48,6 +47,12 @@ const RepuestoSchema = new mongoose.Schema(
     },
     bodega: {
       sede: {
+        type: String,
+        required: false,
+      },
+    },
+    marca: {
+      nombre: {
         type: String,
         required: false,
       },
