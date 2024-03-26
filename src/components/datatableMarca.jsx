@@ -12,7 +12,8 @@ const MarcasList = () => {
   const fetchMarcas = async () => {
     try {
       const response = await fetch('../api/marca'); 
-      const data = await response.json(); setMarcas(data); 
+      const data = await response.json(); 
+      setMarcas(data); 
     } catch (error) {
       setError(error.message); 
     }
