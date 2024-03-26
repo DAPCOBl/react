@@ -66,8 +66,6 @@ export default function CreateRepuesto() {
     }
 
     try {
-
-
       const res = await fetch("/api/repuesto", {
         method: "POST",
         headers: {
