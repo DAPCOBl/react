@@ -62,6 +62,7 @@ const RepuestoList = () => {
   }, []);
 
   return (
+    <div>
     <table className="table">
       <thead>
         <tr>
@@ -89,8 +90,8 @@ const RepuestoList = () => {
             <td>{repuesto.tipoRepuesto}</td>
             <td>{repuesto.tipoGarantia}</td>
             <td>{repuesto.condicion}</td>
-            <td>{repuesto.marca}</td>
-            <td>{repuesto.bodega}</td>
+            <td>{repuesto.marca?.nombre}</td>
+            <td>{repuesto.bodega?.sede}</td>
             <td>
               <h5>
                 <a onClick={() => editRepuesto(repuesto._id)}>
@@ -105,10 +106,96 @@ const RepuestoList = () => {
         ))}
       </tbody>
     </table>
-    
-  );
-  };
-
-
+    {repuestoEdit && (
+      <div className="Registrar datatableRepuesto">
+        <h1>EDIT REPUESTO</h1>
+        <form>
+        <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, nombre: e.target.value });
+            }}
+            type="text"
+            placeholder="Nombre"
+            value={repuestoEdit?.nombre || ''}
+          />
+          <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, descripcionRepuesto: e.target.value });
+            }}
+            type="text"
+            placeholder="DescripcionRepuesto"
+            value={repuestoEdit?.descripcionRepuesto || ''}
+          />
+           <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, referencia: e.target.value });
+            }}
+            type="text"
+            placeholder="Referencia"
+            value={repuestoEdit?.referencia || ''}
+          />
+           <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, precio: e.target.value });
+            }}
+            type="text"
+            placeholder="Precio"
+            value={repuestoEdit?.precio || ''}
+          />
+           <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, modelo: e.target.value });
+            }}
+            type="text"
+            placeholder="Modelo"
+            value={repuestoEdit?.modelo || ''}
+          />
+           <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, tipoRepuesto: e.target.value });
+            }}
+            type="text"
+            placeholder="TipoRepuesto"
+            value={repuestoEdit?.tipoRepuesto || ''}
+          />
+           <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, tipoGarantia: e.target.value });
+            }}
+            type="text"
+            placeholder="TipoGarantia"
+            value={repuestoEdit?.tipoGarantia || ''}
+          />
+           <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, condicion: e.target.value });
+            }}
+            type="text"
+            placeholder="Condicion "
+            value={repuestoEdit?.condicion || ''}
+          />
+           <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, marca: e.target.value });
+            }}
+            type="text"
+            placeholder="Marca"
+            value={repuestoEdit?.marca || ''}
+          />
+           <input
+            onChange={(e) => {
+              setRepuestoEdit({ ...repuestoEdit, bodega: e.target.value });
+            }}
+            type="text"
+            placeholder="Bodega"
+            value={repuestoEdit?.bodega || ''}
+          />
+          <button type="button" onClick={() => handleEditRepuesto(repuestoEdit)}>Editar Repuesto</button>
+        </form>
+      </div>
+    )}
+    </div>
+);
+};
 
 export default RepuestoList;
