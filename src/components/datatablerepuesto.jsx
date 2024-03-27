@@ -180,7 +180,7 @@ const RepuestoList = () => {
             }}
             type="text"
             placeholder="Marca"
-            value={repuestoEdit?.marca || ''}
+            value={repuestoEdit?.marca?.nombre || ''}
           />
            <input
             onChange={(e) => {
@@ -188,7 +188,7 @@ const RepuestoList = () => {
             }}
             type="text"
             placeholder="Bodega"
-            value={repuestoEdit?.bodega || ''}
+            value={repuestoEdit?.bodega?.sede || ''}
           />
           <button type="button" onClick={() => handleEditRepuesto(repuestoEdit)}>Editar Repuesto</button>
         </form>
