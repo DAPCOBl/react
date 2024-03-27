@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
+import Swal from 'sweetalert2';
 
 const RepuestoList = () => {
   const [repuestos, setRepuestos] = useState([]);
   const [repuestoEdit, setRepuestoEdit] = useState(null);
   const [error, setError] = useState(null);
+  const [urlImg, setUrlImg] = useState('');
   const router = useRouter();
 
   const fetchRepuestos = async () => {
@@ -40,10 +42,11 @@ const RepuestoList = () => {
 
   const handleEditRepuesto = async (repuesto) => {
     try {
+      const updatedRepuesto = { ...repuesto, imagen: urlImg };
       const response = await fetch(`../api/repuesto/${repuesto._id}`, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(repuesto),
       });
@@ -52,8 +55,31 @@ const RepuestoList = () => {
       }
       fetchRepuestos();
       setRepuestoEdit(null);
+      setUrlImg('');
     } catch (error) {
       setError(error.message);
+    }
+  };
+
+  const handleImageChange = async () => {
+    const { value: file } = await Swal.fire({
+      title: "Editar la Imagen",
+      input: "file",
+      inputAttributes: {
+        "accept": "image/*"
+      }
+    });
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setUrlImg(e.target.result);
+        Swal.fire({
+          title: "La imagen ha sido cargada",
+          imageUrl: e.target.result,
+        });
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -63,139 +89,140 @@ const RepuestoList = () => {
 
   return (
     <div>
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>DescripcionRepuesto</th>
-          <th>Referencia</th>
-          <th>Precio</th>
-          <th>Modelo</th>
-          <th>TipoRepuesto</th>
-          <th>TipoGarantia</th>
-          <th>Condicion</th>
-          <th>Marca</th>
-          <th>Bodega</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        {repuestos.map((repuesto) => (
-          <tr key={repuesto._id}>
-            <td>{repuesto.nombre}</td>
-            <td>{repuesto.descripcionRepuesto}</td>
-            <td>{repuesto.referencia}</td>
-            <td>{repuesto.precio}</td>
-            <td>{repuesto.modelo}</td>
-            <td>{repuesto.tipoRepuesto}</td>
-            <td>{repuesto.tipoGarantia}</td>
-            <td>{repuesto.condicion}</td>
-            <td>{repuesto.marca?.nombre}</td>
-            <td>{repuesto.bodega?.sede}</td>
-            <td>
-              <h5>
-                <a onClick={() => editRepuesto(repuesto._id)}>
-                  <FontAwesomeIcon icon={faPencil} />
-                </a>
-                <a onClick={() => deleteRepuesto(repuesto._id)}>
-                  <FontAwesomeIcon icon={faTrash} />
-                </a>
-              </h5>
-            </td>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>DescripcionRepuesto</th>
+            <th>Referencia</th>
+            <th>Precio</th>
+            <th>Modelo</th>
+            <th>TipoRepuesto</th>
+            <th>TipoGarantia</th>
+            <th>Condicion</th>
+            <th>Marca</th>
+            <th>Bodega</th>
+            <th>Acciones</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-    {repuestoEdit && (
-      <div className="Registrar datatableRepuesto">
-        <h1>EDIT REPUESTO</h1>
-        <form>
-        <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, nombre: e.target.value });
-            }}
-            type="text"
-            placeholder="Nombre"
-            value={repuestoEdit?.nombre || ''}
-          />
-          <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, descripcionRepuesto: e.target.value });
-            }}
-            type="text"
-            placeholder="DescripcionRepuesto"
-            value={repuestoEdit?.descripcionRepuesto || ''}
-          />
-           <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, referencia: e.target.value });
-            }}
-            type="text"
-            placeholder="Referencia"
-            value={repuestoEdit?.referencia || ''}
-          />
-           <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, precio: e.target.value });
-            }}
-            type="text"
-            placeholder="Precio"
-            value={repuestoEdit?.precio || ''}
-          />
-           <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, modelo: e.target.value });
-            }}
-            type="text"
-            placeholder="Modelo"
-            value={repuestoEdit?.modelo || ''}
-          />
-           <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, tipoRepuesto: e.target.value });
-            }}
-            type="text"
-            placeholder="TipoRepuesto"
-            value={repuestoEdit?.tipoRepuesto || ''}
-          />
-           <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, tipoGarantia: e.target.value });
-            }}
-            type="text"
-            placeholder="TipoGarantia"
-            value={repuestoEdit?.tipoGarantia || ''}
-          />
-           <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, condicion: e.target.value });
-            }}
-            type="text"
-            placeholder="Condicion "
-            value={repuestoEdit?.condicion || ''}
-          />
-           <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, marca: e.target.value });
-            }}
-            type="text"
-            placeholder="Marca"
-            value={repuestoEdit?.marca?.nombre || ''}
-          />
-           <input
-            onChange={(e) => {
-              setRepuestoEdit({ ...repuestoEdit, bodega: e.target.value });
-            }}
-            type="text"
-            placeholder="Bodega"
-            value={repuestoEdit?.bodega?.sede || ''}
-          />
-          <button type="button" onClick={() => handleEditRepuesto(repuestoEdit)}>Editar Repuesto</button>
-        </form>
-      </div>
-    )}
+        </thead>
+        <tbody>
+          {repuestos.map((repuesto) => (
+            <tr key={repuesto._id}>
+              <td>{repuesto.nombre}</td>
+              <td>{repuesto.descripcionRepuesto}</td>
+              <td>{repuesto.referencia}</td>
+              <td>{repuesto.precio}</td>
+              <td>{repuesto.modelo}</td>
+              <td>{repuesto.tipoRepuesto}</td>
+              <td>{repuesto.tipoGarantia}</td>
+              <td>{repuesto.condicion}</td>
+              <td>{repuesto.marca?.nombre}</td>
+              <td>{repuesto.bodega?.sede}</td>
+              <td>
+                <h5>
+                  <a onClick={() => editRepuesto(repuesto._id)}>
+                    <FontAwesomeIcon icon={faPencil} />
+                  </a>
+                  <a onClick={() => deleteRepuesto(repuesto._id)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </a>
+                </h5>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {repuestoEdit && (
+            <div className="Registrar datatableRepuesto">
+            <h1>EDIT REPUESTO</h1>
+            <form>
+            <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, nombre: e.target.value });
+                }}
+                type="text"
+                placeholder="Nombre"
+                value={repuestoEdit?.nombre || ''}
+              />
+              <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, descripcionRepuesto: e.target.value });
+                }}
+                type="text"
+                placeholder="DescripcionRepuesto"
+                value={repuestoEdit?.descripcionRepuesto || ''}
+              />
+               <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, referencia: e.target.value });
+                }}
+                type="text"
+                placeholder="Referencia"
+                value={repuestoEdit?.referencia || ''}
+              />
+               <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, precio: e.target.value });
+                }}
+                type="text"
+                placeholder="Precio"
+                value={repuestoEdit?.precio || ''}
+              />
+               <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, modelo: e.target.value });
+                }}
+                type="text"
+                placeholder="Modelo"
+                value={repuestoEdit?.modelo || ''}
+              />
+               <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, tipoRepuesto: e.target.value });
+                }}
+                type="text"
+                placeholder="TipoRepuesto"
+                value={repuestoEdit?.tipoRepuesto || ''}
+              />
+               <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, tipoGarantia: e.target.value });
+                }}
+                type="text"
+                placeholder="TipoGarantia"
+                value={repuestoEdit?.tipoGarantia || ''}
+              />
+               <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, condicion: e.target.value });
+                }}
+                type="text"
+                placeholder="Condicion "
+                value={repuestoEdit?.condicion || ''}
+              />
+               <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, marca: e.target.value });
+                }}
+                type="text"
+                placeholder="Marca"
+                value={repuestoEdit?.marca?.nombre || ''}
+              />
+               <input
+                onChange={(e) => {
+                  setRepuestoEdit({ ...repuestoEdit, bodega: e.target.value });
+                }}
+                type="text"
+                placeholder="Bodega"
+                value={repuestoEdit?.bodega?.sede || ''}
+              />
+            <button type="button" onClick={handleImageChange}>Seleccionar Imagen</button>
+            <button type="button" onClick={() => handleEditRepuesto(repuestoEdit)}>Editar Repuesto</button>
+          </form>
+        </div>
+      )}
     </div>
-);
+  );
 };
 
 export default RepuestoList;

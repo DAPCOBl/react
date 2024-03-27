@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/navigation';
 
-
 const DevolucionList = () => {
   const [devoluciones, setDevoluciones] = useState([]);
   const [devolucionEdit, setDevolucionEdit] = useState(null);
@@ -72,7 +71,7 @@ const DevolucionList = () => {
           </tr>
         </thead>
         <tbody>
-          {Array.isArray(devoluciones) && devoluciones.map(devolucion => (
+        {devoluciones.map((devolucion) => (
             <tr key={devolucion._id}>
               <td>{devolucion.FechaDevolucion}</td>
               <td>{devolucion.MotivoDevolucion}</td>

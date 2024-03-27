@@ -67,4 +67,48 @@ export async function GET(request, { params }) {
      );
   }
  }
+
+ export async function PUT(request, { params }) {
+  const { urlImg, nombre, descripcionRepuesto, referencia, precio, modelo, tipoRepuesto, tipoGarantia, condicion, user, marca, bodega } = await request.json(); 
+
+  try {
+    const result = await Repuesto.findByIdAndUpdate(params._id, {
+      urlImg, 
+      nombre, 
+      descripcionRepuesto, 
+      referencia, 
+      precio, 
+      modelo, 
+      tipoRepuesto, 
+      tipoGarantia, 
+      condicion, 
+      user, 
+      marca, 
+      bodega 
+    });
+
+    if (!result) {
+      return new Response(
+        JSON.stringify({
+          message: 'Repuesto no encontrada',
+        }),
+        {
+          status: 404,
+        }
+      );
+    }
+
+    return new Response(null, {
+      status: 204,
+    });
+  } catch (error) {
+    return new Response(
+      JSON.stringify({
+        message: error.message,
+      }),
+      { status: 500 }
+    );
+  }
+}
+
  
