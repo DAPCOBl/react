@@ -176,13 +176,13 @@ export default function CreateRepuesto() {
           />
           <select
             onChange={(e) => setCondicion(e.target.value)}
-            name="condicion">
-            <option value="">Selecciona una Condición</option>
-            <option value="Nuevo">Nuevo</option>
-            <option value="Usado">Usado</option>
-            <option value="Reacondicionado">Reacondicionado</option>
-          </select>
-          <select name="bodega" id="bodega" required onChange={(e) => setSelectedBodega(e.target.value)}>
+            type="text"
+            placeholder="Condición"
+          />
+
+
+          
+          <select name="bodega" id="bodega" required>
             <option value="">Selecciona una bodega</option>
             {bodegas.map((bodega) => (
               <option value={bodega.name}>{bodega.name}</option>

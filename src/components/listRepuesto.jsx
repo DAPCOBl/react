@@ -64,7 +64,7 @@ function ListRepuestos() {
         setRepuestosFiltrados(repuestosFiltradosTemp);
     };
 
-    const marcasUnicas = [...new Set(repuestos.map(repuesto => repuesto.marca.nombre))];
+    const marcasUnicas = [...new Set(repuestos.map(repuesto => repuesto.marca && repuesto.marca.nombre))];
     const tiposRepuestoUnicos = [...new Set(repuestos.map(repuesto => repuesto.tipoRepuesto))];
 
     return (

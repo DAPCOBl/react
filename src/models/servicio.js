@@ -9,7 +9,7 @@ const ServicioSchema = new mongoose.Schema(
     descripcion: {
       type: String,
       required: true,
-    }
+    },
   },
   { timestamps: true }
 );
