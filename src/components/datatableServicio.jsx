@@ -72,11 +72,10 @@ const ServiciosList = () => {
           <tr>
             <th>Nombre</th>
             <th>Descripción</th>
-            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {servicios.map(servicio => (
+        {Array.isArray(servicios) && servicios.map(servicio => (
             <tr key={servicio._id}>
               <td>{servicio.nombre}</td>
               <td>{servicio.descripcion}</td>
@@ -109,14 +108,6 @@ const ServiciosList = () => {
               type="text"
               placeholder="Descripción"
               value={servicioEdit?.descripcion || ''}
-            />
-            <input
-              onChange={(e) => {
-                setServicioEdit({ ...servicioEdit, acciones: e.target.value });
-              }}
-              type="text"
-              placeholder="Acciones"
-              value={servicioEdit?.acciones || ''}
             />
             <button type="button" onClick={() => handleEditServicio(servicioEdit)}>Editar Servicio</button>
             <button type="button" onClick={handleCancelEdit}>Cancelar</button>

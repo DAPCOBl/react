@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import M from 'materialize-css';
+import Footer from '../../../components/footer';
 /**import Loading from '../../../components/loader';**/
 
 export default function Producto() {
@@ -18,7 +19,7 @@ export default function Producto() {
           throw new Error('Error al cargar los datos');
         }
         const data = await response.json();
-        setRepuesto(data);
+        setRepuesto(data);  
         console.log('entro');
       } catch (error) {
         console.error('Error al cargar los datos del producto:', error);
@@ -46,8 +47,11 @@ export default function Producto() {
   }**/
 
   return (
-    <div>
-      <h1>Producto</h1>
+    <div className="producto">
+      <div className="contenido" style={{ color: 'white' }}>
+        <h1>Producto</h1>
+      </div>
+      <img src="/IMG/Fondo.jpeg" alt="QR" />
       {repuesto && (
         <>
           <div className="details-contenedor-producto">
@@ -56,9 +60,11 @@ export default function Producto() {
                 <img className="materialboxed" src={repuesto.urlImg} alt="" id="details-img1" />
               </div>
               <div className="info-pro">
-                <h5>{repuesto.nombre}</h5>
+                <div className="producto-info">
+                  {repuesto.nombre}<br></br>
+                  <span className="precio">${repuesto.precio}</span>
+                </div>
                 <h1>{repuesto.marca}</h1>
-                <h2>{repuesto.precio}</h2>
               </div>
             </div>
           </div>
@@ -68,23 +74,23 @@ export default function Producto() {
               <h1>SOBRE EL PRODUCTO</h1>
             </div>
             <div className="cat">
-              <div className=" cat-descp" onClick={aparecerdesp}>
+              <div className="cat-descp" onClick={aparecerdesp}>
                 <h3>Caracteristicas</h3>
-                <div className="details-raya1" id="raya1"></div>
+                <div className="raya1" id="raya1"></div>
               </div>
-              <div className=" cat-espe" onClick={aparecerespe}>
-                <h3>ESPECIFICACIONES</h3>
-                <div className="details-raya2" id="raya2"></div>
+              <div className="cat-espe" onClick={aparecerespe}>
+                <h3>Especificaciones</h3>
+                <div className="raya2" id="raya2"></div>
               </div>
             </div>
             <div className="details-descripcion" id="descripcion">
-              <ul>
-                <p>Referencia: {repuesto.referencia}</p>
-                <p>Modelo: {repuesto.modelo}</p>
-                <p>Marca: {repuesto.marca}</p>
-                <p>Tipo de Repuesto: {repuesto.tipoRepuesto}</p>
-                <p>Tipo de Garantía: {repuesto.tipoGarantia}</p>
-                <p>Condición: {repuesto.condicion}</p>
+              <ul style={{ textAlign: 'left' }}>
+                <li>Referencia: {repuesto.referencia}</li>
+                <li>Modelo: {repuesto.modelo}</li>
+                <li>Marca: {repuesto.marca}</li>
+                <li>Tipo de Repuesto: {repuesto.tipoRepuesto}</li>
+                <li>Tipo de Garantía: {repuesto.tipoGarantia}</li>
+                <li>Condición: {repuesto.condicion}</li>
               </ul>
             </div>
             <div className="especificacion" id="especificacion">
@@ -97,6 +103,7 @@ export default function Producto() {
           </div>
         </>
       )}
+      <Footer/>
     </div>
   );
 }

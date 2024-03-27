@@ -173,10 +173,7 @@ export default function CreateRepuesto() {
             onChange={(e) => setCondicion(e.target.value)}
             type="text"
             placeholder="Condición"
-          />
-
-
-          
+          />  
           <select name="bodega" id="bodega" required>
             <option value="">Selecciona una bodega</option>
             {bodegas.map((bodega) => (
@@ -190,11 +187,6 @@ export default function CreateRepuesto() {
               <option value="{marca.nombre}">{marca.nombre}</option>
             ))}
           </select>
-
-
-
-
-
           <button type="button" onClick={handleImageChange}>Seleccionar Imagen</button>
           <button type="submit">Agregar Repuesto</button>
         </form>

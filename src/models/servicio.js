@@ -10,10 +10,6 @@ const ServicioSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    acciones: {
-      type: String, 
-      required: true,
-    },
   },
   { timestamps: true }
 );
