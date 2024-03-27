@@ -30,10 +30,11 @@ export async function GET() {
       referencia: result.referencia,
       precio: result.precio,
       modelo: result.modelo,
-      marca: result.marca,
       tipoRepuesto: result.tipoRepuesto,
       tipoGarantia: result.tipoGarantia,
       condicion: result.condicion,
+      marca: result.marca,
+      bodega: result.bodega,
     }));
 
     return NextResponse.json(mappedResults);

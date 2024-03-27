@@ -57,7 +57,7 @@ export default function Producto() {
               </div>
               <div className="info-pro">
                 <h5>{repuesto.nombre}</h5>
-                <h1>{repuesto.marca}</h1>
+                <h1>{repuesto.marca.nombre}</h1>
                 <h2>{repuesto.precio}</h2>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function Producto() {
               <ul>
                 <p>Referencia: {repuesto.referencia}</p>
                 <p>Modelo: {repuesto.modelo}</p>
-                <p>Marca: {repuesto.marca}</p>
+                <p>Marca: {repuesto.marca.nombre}</p>
                 <p>Tipo de Repuesto: {repuesto.tipoRepuesto}</p>
                 <p>Tipo de Garantía: {repuesto.tipoGarantia}</p>
                 <p>Condición: {repuesto.condicion}</p>

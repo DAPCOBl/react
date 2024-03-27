@@ -6,9 +6,7 @@ import React from 'react';
 export default function RepuestoPage() {
   return (
     <div>
-      
-      <DatatableUser />
-   
+      <DatatableUser />   
     </div>
   );
 }

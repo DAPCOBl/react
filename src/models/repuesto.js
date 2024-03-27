@@ -29,6 +29,7 @@ const RepuestoSchema = new mongoose.Schema(
     },
     tipoRepuesto: {
       type: String,
+      enum: ['Full Inyection', 'Carburador'],
       required: true,
     },
     tipoGarantia: {
@@ -37,6 +38,7 @@ const RepuestoSchema = new mongoose.Schema(
     },
     condicion: {
       type: String,
+      enum: ['Nuevo', 'Usado', 'Reacondicionado'],
       required: true,
     },
     user: {

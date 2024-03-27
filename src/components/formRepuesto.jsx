@@ -162,21 +162,26 @@ export default function CreateRepuesto() {
             type="text"
             placeholder="Modelo"
           />
-          <input
+          <select
             onChange={(e) => setTipoRepuesto(e.target.value)}
-            type="text"
-            placeholder="TipoRepuesto"
-          />
+            name="tipoRepuesto">
+            <option value="">Selecciona un Tipo de Repuesto</option>
+            <option value="Full Inyection">Full Inyection</option>
+            <option value="Carburador">Carburador</option>
+          </select>
           <input
             onChange={(e) => setTipoGarantia(e.target.value)}
             type="text"
             placeholder="TipoGarantía"
           />
-          <input
+          <select
             onChange={(e) => setCondicion(e.target.value)}
-            type="text"
-            placeholder="Condición"
-          />
+            name="condicion">
+            <option value="">Selecciona una Condición</option>
+            <option value="Nuevo">Nuevo</option>
+            <option value="Usado">Usado</option>
+            <option value="Reacondicionado">Reacondicionado</option>
+          </select>
           <select name="bodega" id="bodega" required onChange={(e) => setSelectedBodega(e.target.value)}>
             <option value="">Selecciona una bodega</option>
             {bodegas.map((bodega) => (
