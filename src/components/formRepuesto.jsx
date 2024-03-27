@@ -20,6 +20,8 @@ export default function CreateRepuesto() {
   const [marcas, setMarcas] = useState([]);
   const router = useRouter();
   const [error, setError] = useState(null);
+  const [selectedBodega, setSelectedBodega] = useState("");
+  const [selectedMarca, setSelectedMarca] = useState("");
 
   const fetchBodegas = async () => {
     try {
@@ -40,7 +42,7 @@ export default function CreateRepuesto() {
     try {
       const response = await fetch('../api/marca');
       const data = await response.json();
-      setBodegas(data);
+      setMarcas(data);
     } catch (error) {
       setError(error.message);
     }
@@ -64,8 +66,6 @@ export default function CreateRepuesto() {
     }
 
     try {
-
-
       const res = await fetch("/api/repuesto", {
         method: "POST",
         headers: {
@@ -82,8 +82,8 @@ export default function CreateRepuesto() {
           tipoGarantia,
           condicion,
           user: { name: session.user.name },
-          bodega: { sede: bodega.name },
-          marca: { nombre: marca.nombre },
+          bodega: { sede: selectedBodega },
+          marca: { nombre: selectedMarca },
         }),
       });
 
@@ -150,7 +150,10 @@ export default function CreateRepuesto() {
             placeholder="Referencia"
           />
           <input
-            onChange={(e) => setPrecio(e.target.value)}
+            onChange={(e) => {
+              const inputValue = e.target.value.replace(/[^0-9]/g, '');
+              setPrecio(inputValue);
+            }}
             type="text"
             placeholder="Precio"
           />
@@ -159,32 +162,37 @@ export default function CreateRepuesto() {
             type="text"
             placeholder="Modelo"
           />
-          <input
+          <select
             onChange={(e) => setTipoRepuesto(e.target.value)}
-            type="text"
-            placeholder="TipoRepuesto"
-          />
+            name="tipoRepuesto">
+            <option value="">Selecciona un Tipo de Repuesto</option>
+            <option value="Full Inyection">Full Inyection</option>
+            <option value="Carburador">Carburador</option>
+          </select>
           <input
             onChange={(e) => setTipoGarantia(e.target.value)}
             type="text"
             placeholder="TipoGarantía"
           />
-          <input
+          <select
             onChange={(e) => setCondicion(e.target.value)}
             type="text"
             placeholder="Condición"
-          />  
+          />
+
+
+          
           <select name="bodega" id="bodega" required>
             <option value="">Selecciona una bodega</option>
             {bodegas.map((bodega) => (
-              <option value="{bodega.name}">{bodega.name}</option>
+              <option value={bodega.name}>{bodega.name}</option>
             ))}
           </select>
-          
-          <select name="marca" id="marca" required>
+
+          <select name="marca" id="marca" required onChange={(e) => setSelectedMarca(e.target.value)}>
             <option value="">Selecciona una marca</option>
             {marcas.map((marca) => (
-              <option value="{marca.nombre}">{marca.nombre}</option>
+              <option value={marca.nombre}>{marca.nombre}</option>
             ))}
           </select>
           <button type="button" onClick={handleImageChange}>Seleccionar Imagen</button>

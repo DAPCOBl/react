@@ -56,7 +56,11 @@ const HeroHeader = () => {
   };
 
   const Sedes = () => {
-    window.location.href = "/sedes";
+    window.location.href = "/sede";
+  };
+
+  const Repuesto = () => {
+    window.location.href = "/datatableRepuesto";
   };
 
   return (
@@ -78,7 +82,7 @@ const HeroHeader = () => {
           </li>
           <li className="nab__items">
             <h5>
-              <a onClick={() => mostrarToast('Productos')}>Productos</a>
+              <a onClick={() => Repuesto()}>Productos</a>
             </h5>
           </li>
           {session ? (

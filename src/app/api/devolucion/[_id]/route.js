@@ -1,18 +1,18 @@
 // Importación de módulos
-import Bodega from '../../../../models/bodega'; 
+import Devolucion from '../../../../models/devolucion'; 
 /*
     Manejador de solicitudes DELETE para eliminar una bodega en la base de datos.
 */
 export async function DELETE(request, { params }) {
   try {
 // Eliminar un nuevo documento de bodega con el id proporcionado.
-    const result = await Bodega.findByIdAndDelete(params._id);
+    const result = await Devolucion.findByIdAndDelete(params._id);
 
      //  Verificar si la bodega no fue encontrada
     if (!result) {
       return new Response(
         JSON.stringify({
-          message: "Bodega no encontrada",
+          message: "Devolucion no encontrada",
         }),
         {
          // Código de estado HTTP 404, indicando que el recurso no fue encontrado.
@@ -40,19 +40,18 @@ export async function DELETE(request, { params }) {
 }
 
 export async function PUT(request, { params }) {
-  const {name, direccion, numPhone } = await request.json(); 
+  const { FechaDevolucion, MotivoDevolucion } = await request.json(); 
 
   try {
-    const result = await Bodega.findByIdAndUpdate(params._id, {
-      name, 
-      direccion, 
-      numPhone,
+    const result = await Devolucion.findByIdAndUpdate(params._id, {
+      FechaDevolucion,
+      MotivoDevolucion,
     });
 
     if (!result) {
       return new Response(
         JSON.stringify({
-          message: 'Bodega no encontrada',
+          message: 'Devolucion no encontrada',
         }),
         {
           status: 404,

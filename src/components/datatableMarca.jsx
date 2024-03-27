@@ -11,17 +11,17 @@ const MarcasList = () => {
 
   const fetchMarcas = async () => {
     try {
-      const response = await fetch('../api/marca');
-      const data = await response.json();
-      setMarcas(data);
+      const response = await fetch('../api/marca'); 
+      const data = await response.json(); 
+      setMarcas(data); 
     } catch (error) {
-      setError(error.message);
+      setError(error.message); 
     }
   };
 
   const deleteMarca = async (_id) => {
     try {
-      const response = await fetch(`../api/marca/${_id}`, {
+      const response = await fetch(`../api/marca/${_id}`, { 
         method: 'DELETE',
       });
       if (!response.ok) {
@@ -29,37 +29,37 @@ const MarcasList = () => {
       }
       fetchMarcas();
     } catch (error) {
-      setError(error.message);
+      setError(error.message); 
     }
   };
 
   const editMarca = (id) => {
     const marca = marcas.find(marca => marca._id === id);
-    setMarcaEdit(marca);
+    setMarcaEdit(marca); 
   };
 
   const handleEditMarca = async (marca) => {
     try {
-      const response = await fetch(`../api/marca/${marca._id}`, {
+      const response = await fetch(`../api/marca/${marca._id}`, { 
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(marca)
+        body: JSON.stringify(marca) 
       });
       if (!response.ok) {
-        throw new Error('Error al editar la marca');
+        throw new Error('Error al editar la marca'); 
       }
-      fetchMarcas();
+      fetchMarcas(); 
       setMarcaEdit(null);
     } catch (error) {
-      setError(error.message);
+      setError(error.message); 
     }
   };
 
   useEffect(() => {
     fetchMarcas();
-  }, []);
+  }, []); 
 
   return (
     <div className="container-table">

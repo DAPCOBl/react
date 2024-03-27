@@ -3,15 +3,12 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { useSession } from 'next-auth/react';
 
-export default function CreateServicio() {
-  const { data: session } = useSession();
-  const [nombre, setNombre] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const router = useRouter();
-
-  const nombreRegex = /^[a-zA-Z ]{1,30}$/;
-  
-  const descripcionRegex = /^[a-zA-Z0-9 ,.!?:;'()"-]{1,50}$/;
+    export default function CreateServicio() {
+    const { data: session } = useSession();
+    const [nombre, setNombre] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+    const [acciones, setAcciones] = useState("");
+    const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,18 +31,18 @@ export default function CreateServicio() {
       return;
     }
 
-    try {
-
-      const res = await fetch("/api/servicio", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nombre,
-          descripcion,
-        }),
-      });
+        try {
+        const res = await fetch("/api/servicio", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            nombre,
+            descripcion,
+            acciones
+            }),
+        });
 
       if (res.ok) {
         const form = e.target;
@@ -71,20 +68,25 @@ export default function CreateServicio() {
       <div className="Registrar">
         <h1>Registrar Servicio</h1>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            onChange={(e) => setNombre(e.target.value)}
-            type="text"
-            placeholder="Nombre"
-          />
-           <input
-            onChange={(e) => setDescripcion(e.target.value)}
-            type="text"
-            placeholder="Descripcion"
-          />
-          <button type="submit">Agregar Servicio</button>
-        </form>
-      </div>
-    </div>
-  );
-}
+            <form onSubmit={handleSubmit}>
+            <input
+                onChange={(e) => setNombre(e.target.value)}
+                type="text"
+                placeholder="Nombre"
+            />
+            <input
+                onChange={(e) => setDescripcion(e.target.value)}
+                type="text"
+                placeholder="Descripción"
+            />
+            <input
+                onChange={(e) => setAcciones(e.target.value)}
+                type="text"
+                placeholder="Acciones"
+            />
+            <button type="submit">Agregar Servicio</button>
+            </form>
+        </div>
+        </div>
+    );
+    }

@@ -60,11 +60,9 @@ export default function Producto() {
                 <img className="materialboxed" src={repuesto.urlImg} alt="" id="details-img1" />
               </div>
               <div className="info-pro">
-                <div className="producto-info">
-                  {repuesto.nombre}<br></br>
-                  <span className="precio">${repuesto.precio}</span>
-                </div>
+                <h5>{repuesto.nombre}</h5>
                 <h1>{repuesto.marca}</h1>
+                <h2>{repuesto.precio}</h2>
               </div>
             </div>
           </div>
@@ -84,13 +82,13 @@ export default function Producto() {
               </div>
             </div>
             <div className="details-descripcion" id="descripcion">
-              <ul style={{ textAlign: 'left' }}>
-                <li>Referencia: {repuesto.referencia}</li>
-                <li>Modelo: {repuesto.modelo}</li>
-                <li>Marca: {repuesto.marca}</li>
-                <li>Tipo de Repuesto: {repuesto.tipoRepuesto}</li>
-                <li>Tipo de Garantía: {repuesto.tipoGarantia}</li>
-                <li>Condición: {repuesto.condicion}</li>
+              <ul>
+                <p>Referencia: {repuesto.referencia}</p>
+                <p>Modelo: {repuesto.modelo}</p>
+                <p>Marca: {repuesto.marca}</p>
+                <p>Tipo de Repuesto: {repuesto.tipoRepuesto}</p>
+                <p>Tipo de Garantía: {repuesto.tipoGarantia}</p>
+                <p>Condición: {repuesto.condicion}</p>
               </ul>
             </div>
             <div className="especificacion" id="especificacion">

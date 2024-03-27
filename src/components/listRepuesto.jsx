@@ -17,6 +17,7 @@ function ListRepuestos() {
             setRepuestos(repuestosData);
             setRepuestosFiltrados(repuestosData);
         } catch (error) {
+            console.error('Error al obtener los repuestos:', error);
         }
     };
 
@@ -30,28 +31,31 @@ function ListRepuestos() {
 
     const handleMarcaCheckboxChange = (event) => {
         const marca = event.target.value;
-        if (event.target.checked) {
-            setMarcasFiltradas([...marcasFiltradas, marca]);
-        } else {
-            setMarcasFiltradas(marcasFiltradas.filter(item => item !== marca));
-        }
+        setMarcasFiltradas(prev => {
+            if (prev.includes(marca)) {
+                return prev.filter(item => item !== marca);
+            } else {
+                return [...prev, marca];
+            }
+        });
     };
 
     const handleTipoRepuestoCheckboxChange = (event) => {
         const tipoRepuesto = event.target.value;
-        if (event.target.checked) {
-            setTiposRepuestoFiltrados([...tiposRepuestoFiltrados, tipoRepuesto]);
-        } else {
-            setTiposRepuestoFiltrados(tiposRepuestoFiltrados.filter(item => item !== tipoRepuesto));
-            var inputFilter = document.getElementById(`${tipoRepuesto}-tipoRepuesto`);
-        }
+        setTiposRepuestoFiltrados(prev => {
+            if (prev.includes(tipoRepuesto)) {
+                return prev.filter(item => item !== tipoRepuesto);
+            } else {
+                return [...prev, tipoRepuesto];
+            }
+        });
     };
 
     const filtrar = () => {
         let repuestosFiltradosTemp = repuestos;
 
         if (marcasFiltradas.length > 0) {
-            repuestosFiltradosTemp = repuestosFiltradosTemp.filter(repuesto => marcasFiltradas.includes(repuesto.marca));
+            repuestosFiltradosTemp = repuestosFiltradosTemp.filter(repuesto => marcasFiltradas.includes(repuesto.marca.nombre));
         }
 
         if (tiposRepuestoFiltrados.length > 0) {
@@ -60,7 +64,7 @@ function ListRepuestos() {
         setRepuestosFiltrados(repuestosFiltradosTemp);
     };
 
-    const marcasUnicas = [...new Set(repuestos.map(repuesto => repuesto.marca))];
+    const marcasUnicas = [...new Set(repuestos.map(repuesto => repuesto.marca.nombre))];
     const tiposRepuestoUnicos = [...new Set(repuestos.map(repuesto => repuesto.tipoRepuesto))];
 
     return (
@@ -80,6 +84,7 @@ function ListRepuestos() {
                                         type="checkbox"
                                         id={`${marca}-marca`}
                                         value={marca}
+                                        checked={marcasFiltradas.includes(marca)}
                                         onChange={handleMarcaCheckboxChange}
                                     />
                                     <label className='label-filter' htmlFor={`${marca}-marca`}><b>{marca}</b></label>
@@ -94,6 +99,7 @@ function ListRepuestos() {
                                         type="checkbox"
                                         id={`${tipoRepuesto}-tipoRepuesto`}
                                         value={tipoRepuesto}
+                                        checked={tiposRepuestoFiltrados.includes(tipoRepuesto)}
                                         onChange={handleTipoRepuestoCheckboxChange}
                                     />
                                     <label className='label-filter' htmlFor={`${tipoRepuesto}-tipoRepuesto`}><b>{tipoRepuesto}</b></label>
@@ -107,17 +113,17 @@ function ListRepuestos() {
                         {repuestosFiltrados.map(repuesto => (
                             <li key={repuesto._id} className='repuesto-item'>
                                 <Link href={`/details/${repuesto._id}/`}>
-                                        <div className='repuesto-image-container'>
-                                            <img
-                                                src={`${repuesto.urlImg}`}
-                                                className='repuesto-image'
-                                                alt={`Imagen de ${repuesto.nombre}`}
-                                            />
-                                        </div>
-                                        <div className='repuesto-details'>
-                                            <b>{repuesto.nombre}</b>
-                                            <p className='repuesto-price'>${repuesto.precio}</p>
-                                        </div>
+                                    <div className='repuesto-image-container'>
+                                        <img
+                                            src={`${repuesto.urlImg}`}
+                                            className='repuesto-image'
+                                            alt={`Imagen de ${repuesto.nombre}`}
+                                        />
+                                    </div>
+                                    <div className='repuesto-details'>
+                                        <b>{repuesto.nombre}</b>
+                                        <p className='repuesto-price'>${repuesto.precio}</p>
+                                    </div>
                                 </Link>
                             </li>
                         ))}

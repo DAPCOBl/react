@@ -6,13 +6,14 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
 export default function RegisterForm() {
-  const [accept, setAccept] = useState(false); 
+  const [accept, setAccept] = useState(false);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [numDoc, setNumDoc] = useState("");
   const [numPhone, setNumPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [tipoDoc, setTipoDocumento] = useState("");
   const [error] = useState("");
 
   const router = useRouter();
@@ -70,6 +71,7 @@ export default function RegisterForm() {
           numPhone,
           email,
           password,
+          tipoDoc: { descripcionTipoDoc: tipoDoc },
         }),
       });
 
@@ -88,68 +90,78 @@ export default function RegisterForm() {
   return (
     <div>
 
-    <div className="REGISTRO">
-      <h1>REGISTRO</h1>
+      <div className="REGISTRO">
+        <h1>REGISTRO</h1>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Name"
-        />
-        <input
-          onChange={(e) => setSurname(e.target.value)}
-          type="text"
-          placeholder="Surname"
-        />
-        <input
-          onChange={(e) => setNumDoc(e.target.value)}
-          type="number"
-          placeholder="Número de Documento"
-        />
-        <input
-          onChange={(e) => setNumPhone(e.target.value)}
-          type="number"
-          placeholder="Número de celular"
-        />
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          type="text"
-          placeholder="Email"
-        />
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          placeholder="Password"
-        />
-
-        <label>
+        <form onSubmit={handleSubmit}>
           <input
-            type="checkbox"
-            checked={accept}
-            onChange={(e) => setAccept(e.target.checked)}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="Name"
           />
-          Aceptar terminos y condiciones
-          <Link href={"https://docs.google.com/document/d/1cKQA_UCWIydGg9bC0FvDXBpeV-iScx_11a9XxwyceyE/edit?usp=sharing"}>
-          Terminos y condiciones
-        </Link>
-        </label>
+          <input
+            onChange={(e) => setSurname(e.target.value)}
+            type="text"
+            placeholder="Surname"
+          />
 
-        <button>
-          Registrate
-        </button>
+          <select
+            onChange={(e) => setTipoDocumento(e.target.value)}
+            name="tipoDocumento">
+            <option value="">Selecciona una tipo de documento</option>
+            <option value="Cédula Ciudadana">Cédula Ciudadana</option>
+            <option value="Tarjeta de identidad">Tarjeta de identidad</option>
+            <option value="Cédula Extranjera">Cédula Extranjera</option>
+          </select>
 
-        {error && (
-          <div>
-            {error}
-          </div>
-        )}
+          <input
+            onChange={(e) => setNumDoc(e.target.value)}
+            type="number"
+            placeholder="Número de Documento"
+          />
+          <input
+            onChange={(e) => setNumPhone(e.target.value)}
+            type="number"
+            placeholder="Número de celular"
+          />
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Email"
+          />
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            placeholder="Password"
+          />
 
-        <Link href={"/"}>
-          Ya tienes cuenta? <span>Login</span>
-        </Link>
-      </form>
+          <label>
+            <input
+              type="checkbox"
+              checked={accept}
+              onChange={(e) => setAccept(e.target.checked)}
+            />
+            Aceptar terminos y condiciones
+            <Link href={"https://docs.google.com/document/d/1cKQA_UCWIydGg9bC0FvDXBpeV-iScx_11a9XxwyceyE/edit?usp=sharing"}>
+              Terminos y condiciones
+            </Link>
+          </label>
+
+          <button>
+            Registrate
+          </button>
+
+          {error && (
+            <div>
+              {error}
+            </div>
+          )}
+
+          <Link href={"/"}>
+            Ya tienes cuenta? <span>Login</span>
+          </Link>
+        </form>
+      </div>
     </div>
-  </div>
-);
+  );
 }
