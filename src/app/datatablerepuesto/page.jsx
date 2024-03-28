@@ -1,5 +1,5 @@
 "use client"
-import Formrepuesto from '../../components/formrepuesto';
+import Formrepuesto from '../../components/formRepuesto';
 import Datatablerepuesto from '../../components/datatableRepuesto';
 import React from 'react';
 
