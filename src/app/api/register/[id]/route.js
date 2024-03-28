@@ -1,8 +1,5 @@
 import User from '../../../../models/user';
 
-
-
-
 // Function to handle update requests
 export async function PUT(request, { params }) {
     const {

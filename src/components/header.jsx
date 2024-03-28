@@ -10,6 +10,29 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 const HeroHeader = () => {
   const { data: session } = useSession();
   const [showBye, setShowBye] = useState(false);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const obtenerUser = async () => {
+      if (!session) return;
+      try {
+        const response = await fetch(`/api/user/${session.user.email}`);
+
+        if (!response.ok) {
+          throw new Error('Error al obtener el usuario');
+        }
+
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error('Error al obtener el usuario:', error);
+        setError(error.message);
+      }
+    };
+
+    obtenerUser();
+  }, [session]);
 
   useEffect(() => {
     M.Toast.dismissAll();
@@ -31,11 +54,8 @@ const HeroHeader = () => {
     }
   }, [showBye, session]);
 
-  const mostrarToast = (mensaje) => {
-    M.toast({ html: mensaje });
-  };
-
-  const infoUser = async () => {    const result = await Swal.fire({
+  const infoUser = async () => {
+    const result = await Swal.fire({
       title: "Información del usuario",
       icon: 'info',
       html: `<div style="text-align: left; padding-left: 45px">Name: ${session?.user?.name}<br>Email: ${session?.user?.email}</div>`,
@@ -50,7 +70,7 @@ const HeroHeader = () => {
       editUser();
     }
   };
-  
+
   const editUser = () => {
     window.location.href = "/userActualizar";
   };
@@ -59,8 +79,24 @@ const HeroHeader = () => {
     window.location.href = "/sede";
   };
 
-  const Repuesto = () => {
+  const Marcas = () => {
+    window.location.href = "/marca";
+  };
+
+  const Servicios = () => {
+    window.location.href = "/servicio";
+  };
+
+  const Repuestos = () => {
     window.location.href = "/datatableRepuesto";
+  };
+
+  const Pruebas = () => {
+    window.location.href = "/prueba";
+  };
+
+  const Devolucion = () => {
+    window.location.href = "/devolucion";
   };
 
   return (
@@ -70,21 +106,59 @@ const HeroHeader = () => {
           <h2 className="nab__title fontNegr">JM</h2>
         </div>
         <ul className="nab__link nab__link--menu">
+          {session && user?.descripcionRol === 'admin' ? (
+            <li className="nab__items">
+              <h5>
+                <a onClick={() => Sedes()}>Sedes</a>
+              </h5>
+            </li>
+          ) : null}
+          {session && user?.descripcionRol === 'admin' ? (
+            <li className="nab__items">
+              <h5>
+                <a onClick={() => Marcas()}>Marcas</a>
+              </h5>
+            </li>
+          ) : null}
+          {session && user?.descripcionRol === 'admin' ? (
+            <li className="nab__items">
+              <h5>
+                <a onClick={() => Servicios()}>Servicios</a>
+              </h5>
+            </li>
+          ) : null}
+
+          {session && user?.descripcionRol === 'admin' ? (
+            <li className="nab__items">
+              <h5>
+                <a onClick={() => Usuarios()}>Usuarios</a>
+              </h5>
+            </li>
+          ) : null}
+
+
+          {session && user?.descripcionRol === 'jefe' ? (
+            <li className="nab__items">
+              <h5>
+                <a onClick={() => Repuestos()}>Repuestos</a>
+              </h5>
+            </li>
+          ) : null}
+
+          {session && user?.descripcionRol === 'jefe' ? (
+            <li className="nab__items">
+              <h5>
+                <a onClick={() => Devolucion()}>Devolucion</a>
+              </h5>
+            </li>
+          ) : null}
+
           <li className="nab__items">
             <h5>
-              <a onClick={() => Sedes()}>Sedes</a>
+              <a onClick={() => Pruebas()}>Pruebas</a>
             </h5>
           </li>
-          <li className="nab__items">
-            <h5>
-              <a onClick={() => mostrarToast('Servicios')}>Servicios</a>
-            </h5>
-          </li>
-          <li className="nab__items">
-            <h5>
-              <a onClick={() => Repuesto()}>Productos</a>
-            </h5>
-          </li>
+
           {session ? (
             <li className="nab__items">
               <h5>

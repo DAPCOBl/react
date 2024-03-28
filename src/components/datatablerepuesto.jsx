@@ -42,7 +42,6 @@ const RepuestoList = () => {
 
   const handleEditRepuesto = async (repuesto) => {
     try {
-      const updatedRepuesto = { ...repuesto, imagen: urlImg };
       const response = await fetch(`../api/repuesto/${repuesto._id}`, {
         method: 'PUT',
         headers: {
@@ -55,7 +54,6 @@ const RepuestoList = () => {
       }
       fetchRepuestos();
       setRepuestoEdit(null);
-      setUrlImg('');
     } catch (error) {
       setError(error.message);
     }
@@ -73,7 +71,7 @@ const RepuestoList = () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setUrlImg(e.target.result);
+        setRepuestoEdit({ ...repuestoEdit, imageUrl: e.target.result });
         Swal.fire({
           title: "La imagen ha sido cargada",
           imageUrl: e.target.result,

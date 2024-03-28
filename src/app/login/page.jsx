@@ -10,6 +10,10 @@ export default function Login() {
   const { data: session } = useSession();
   const [showWelcome, setShowWelcome] = useState(false);
 
+  const Page = () => {
+    window.location.href = "/..";
+  };
+
   useEffect(() => {
     if (session?.user) {
       Swal.fire({
@@ -18,6 +22,7 @@ export default function Login() {
         showConfirmButton: false,
       });
       setShowWelcome(true);
+      Page();
     }
   }, [session]);
   return (

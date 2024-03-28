@@ -64,7 +64,7 @@ export default function Producto() {
                   {repuesto.nombre}<br></br>
                   <span className="precio">${repuesto.precio}</span>
                 </div>
-                <h1>{repuesto.marca}</h1>
+                <h1>{repuesto.marca?.nombre}</h1>
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@ export default function Producto() {
               <ul style={{ textAlign: 'left' }}>
                 <li>Referencia: {repuesto.referencia}</li>
                 <li>Modelo: {repuesto.modelo}</li>
-                <li>Marca: {repuesto.marca}</li>
+                <li>Marca: {repuesto.marca?.nombre}</li>
                 <li>Tipo de Repuesto: {repuesto.tipoRepuesto}</li>
                 <li>Tipo de Garantía: {repuesto.tipoGarantia}</li>
                 <li>Condición: {repuesto.condicion}</li>
@@ -96,7 +96,7 @@ export default function Producto() {
             <div className="especificacion" id="especificacion">
               <div className="contenido1">
                 <div className="parr">
-                  {repuesto.descripcion}
+                  {repuesto.descripcionRepuesto}
                 </div>
               </div>
             </div>

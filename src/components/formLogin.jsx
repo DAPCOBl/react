@@ -54,6 +54,8 @@ export default function LoginForm() {
         });
         return;
       }
+
+      router.push("../");
     } catch (error) {
       console.log(error);
     }

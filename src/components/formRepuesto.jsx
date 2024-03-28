@@ -111,7 +111,7 @@ export default function CreateRepuesto() {
       title: "Selecciona la Imagen",
       input: "file",
       inputAttributes: {
-        "accept": "image/*"
+        "accept": "image/png"
       }
     });
 
@@ -162,6 +162,22 @@ export default function CreateRepuesto() {
             type="text"
             placeholder="Modelo"
           />
+
+          <input
+            onChange={(e) => setTipoGarantia(e.target.value)}
+            type="text"
+            placeholder="TipoGarantía"
+          />
+
+          <select
+            onChange={(e) => setCondicion(e.target.value)}
+            name="condicion">
+            <option value="">Selecciona una condicion</option>
+            <option value="Nuevo">Nuevo</option>
+            <option value="Usado">Usado</option>
+            <option value="Reacondicionado">Reacondicionado</option>
+          </select>
+
           <select
             onChange={(e) => setTipoRepuesto(e.target.value)}
             name="tipoRepuesto">
@@ -169,19 +185,7 @@ export default function CreateRepuesto() {
             <option value="Full Inyection">Full Inyection</option>
             <option value="Carburador">Carburador</option>
           </select>
-          <input
-            onChange={(e) => setTipoGarantia(e.target.value)}
-            type="text"
-            placeholder="TipoGarantía"
-          />
-          <select
-            onChange={(e) => setCondicion(e.target.value)}
-            type="text"
-            placeholder="Condición"
-          />
 
-
-          
           <select name="bodega" id="bodega" required>
             <option value="">Selecciona una bodega</option>
             {bodegas.map((bodega) => (

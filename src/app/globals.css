@@ -1131,6 +1131,11 @@ input[type="checkbox" i] {
 }
 
 /***************** ListRepuestos ********************/
+.title-filter{
+    font-size: 15px;
+    padding-bottom: 30px;
+}
+
 
 .repuesto-filter {
     width: 30%;
@@ -1163,7 +1168,7 @@ input[type="checkbox" i] {
     width: auto;
     margin-right: 80px;
     margin-left: 100px !important;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 /**********************CARD REPUESTOS**********************/
