@@ -10,6 +10,12 @@ const DevolucionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    user: {
+      name: {
+        type: String,
+        required: true,
+      },
+    },
 },
   { timestamps: true }
 );

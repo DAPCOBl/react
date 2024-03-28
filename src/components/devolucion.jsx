@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
-import { useSession } from 'next-auth/react';
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { useSession } from 'next-auth/react';
+
 
 export default function CreateDevolucion() {
+  const { data: session } = useSession();
   const [FechaDevolucion, setFechaDevolucion] = useState("");
   const [MotivoDevolucion, setMotivoDevolucion] = useState("");
   const router = useRouter();
@@ -12,7 +14,7 @@ export default function CreateDevolucion() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!FechaDevolucion || !MotivoDevolucion) {
+    if (!FechaDevolucion || !MotivoDevolucion ) {
       Swal.fire({
         icon: "warning",
         title: "Devolucion inválido",
@@ -31,6 +33,8 @@ export default function CreateDevolucion() {
         body: JSON.stringify({
           FechaDevolucion,
           MotivoDevolucion,
+          user: { name: session.user.name },
+          
         }),
       });
 

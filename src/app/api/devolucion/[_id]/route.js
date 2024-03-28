@@ -40,12 +40,13 @@ export async function DELETE(request, { params }) {
 }
 
 export async function PUT(request, { params }) {
-  const { FechaDevolucion, MotivoDevolucion } = await request.json(); 
+  const { FechaDevolucion, MotivoDevolucion, user } = await request.json(); 
 
   try {
     const result = await Devolucion.findByIdAndUpdate(params._id, {
       FechaDevolucion,
       MotivoDevolucion,
+      user,
     });
 
     if (!result) {

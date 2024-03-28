@@ -7,13 +7,13 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
     try {
       // Extracción de los campos requeridos desde el cuerpo de la solicitud.
-      const {  FechaDevolucion, MotivoDevolucion  } = await req.json();
+      const {  FechaDevolucion, MotivoDevolucion, user  } = await req.json();
       
       // Conexión a la base de datos MongoDB.
       await connectMongoDB();
       
       // Creación de un nuevo documento de devolución con los campos proporcionados.
-      await Devolucion.create({ FechaDevolucion, MotivoDevolucion });
+      await Devolucion.create({ FechaDevolucion, MotivoDevolucion, user });
   
       // Devolver una respuesta JSON indicando el éxito en el registro.
       return NextResponse.json({ message: "Devolucion registrado." }, { status: 201 });
@@ -37,6 +37,7 @@ export async function GET() {
         _id: result._id,
         FechaDevolucion: result.FechaDevolucion,
         MotivoDevolucion: result.MotivoDevolucion,
+       
       }));
   
       // Devolver una respuesta JSON con las devoluciones mapeadas.
