@@ -11,8 +11,6 @@ const UsersList = () => {
   const [error, setError] = useState(null);
   const router = useRouter();
 
-  
-
   const fetchUsers = async () => {
     try {
       const response = await fetch('../api/user');
@@ -70,7 +68,6 @@ const UsersList = () => {
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Teléfono</th>
             <th>Email</th>
             <th>Rol</th>
             <th>Estado</th>
@@ -80,7 +77,6 @@ const UsersList = () => {
           {user.map(user => (
             <tr key={user._id}>
               <td>{user.name}</td>
-              <td>{user.numPhone}</td>
               <td>{user.email}</td>
               <td>{user.descripcionRol}</td>
               <td>{user.estado}</td>
@@ -101,9 +97,16 @@ const UsersList = () => {
               onChange={(e) => setDescriptionRol(e.target.value)}
               name="DescriptionRol">
               <option value="">Selecciona un rol</option>
-              <option value="jefe">Jefe</option>
-              <option value="admin">Admin</option>
-              <option value="client">Cliente</option>
+              <option value="Jefe">Jefe</option>
+              <option value="Admin">Admin</option>
+              <option value="Client">Cliente</option>
+            </select>
+            <select
+              onChange={(e) => setEstado(e.target.value)}
+              name="Estado">
+              <option value="">Selecciona un estado</option>
+              <option value="Activado">Activado</option>
+              <option value="Inactivo">Inactivo</option>
             </select>
             <button type="button" onClick={() => handleEditUser(userEdit)}>Editar usuario</button>          </form>
         </div>

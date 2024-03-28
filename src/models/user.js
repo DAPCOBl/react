@@ -29,16 +29,19 @@ const userSchema = new Schema(
     rol: {
       descripcionRol: {
         type: String,
-        default: 'client',
+        enum: ['Jefe', 'Admin', 'Client'],
+        default: 'Client',
       },
       estado: {
         type: String,
-        default: 'inactivo',
+        enum: ['Inactivo', 'Activado'],
+        default: 'Inactivo',
       },
     },
     tipoDoc: {
       descripcionTipoDoc: {
         type: String,
+        enum: ['Cedula Ciudadana', 'Cédula Extranjera', 'Tarjeta de identidad'],
         default: 'Cedula Ciudadana',
       },
     }

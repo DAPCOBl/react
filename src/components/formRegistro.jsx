@@ -109,7 +109,7 @@ export default function RegisterForm() {
             onChange={(e) => setTipoDocumento(e.target.value)}
             name="tipoDocumento">
             <option value="">Selecciona una tipo de documento</option>
-            <option value="Cédula Ciudadana">Cédula Ciudadana</option>
+            <option value="Cedula Ciudadana">Cédula Ciudadana</option>
             <option value="Tarjeta de identidad">Tarjeta de identidad</option>
             <option value="Cédula Extranjera">Cédula Extranjera</option>
           </select>

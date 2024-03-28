@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation'; // Corregido aquí
 import RegisterForm from '../../components/formRepuesto';
 
 const HeroHeader = () => {
@@ -10,10 +10,6 @@ const HeroHeader = () => {
  const [error, setError] = useState(null);
 
  const router = useRouter();
-
- const validarRol = () => {
-    router.push("../");
- };
 
  useEffect(() => {
     const obtenerUser = async () => {
@@ -34,13 +30,17 @@ const HeroHeader = () => {
     obtenerUser();
  }, [session]);
 
+ useEffect(() => {
+    if (user && (user.descripcionRol !== 'admin' && user.descripcionRol !== 'client')) {
+      router.push("../");
+    }
+ }, [user, router]);
+
  return (
     <div>
-      {user && user.descripcionRol !== 'admin' ? (
+      {user && user.descripcionRol !== 'admin' && user.descripcionRol !== 'client' ? (
         <RegisterForm />
-      ) : (
-        validarRol()
-      )}
+      ) : null}
     </div>
  );
 };
