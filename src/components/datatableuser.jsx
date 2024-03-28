@@ -6,8 +6,12 @@ import { useRouter } from 'next/navigation';
 const UsersList = () => {
   const [user, setUser] = useState([]);
   const [userEdit, setUserEdit] = useState(null);
+  const [descriptionRol, setDescriptionRol] = useState(''); 
+  const [estado, setEstado] = useState('');
   const [error, setError] = useState(null);
   const router = useRouter();
+
+  
 
   const fetchUsers = async () => {
     try {
@@ -20,9 +24,16 @@ const UsersList = () => {
   };
 
   const editUser = (id) => {
-    const user = users.find(user => user._id === id);
-    setUserEdit(user);
-  };
+    const usuarioEditado = user.find(u => u._id === id);
+    setUserEdit(usuarioEditado);
+    if (usuarioEditado && usuarioEditado.rol !== null && typeof usuarioEditado.rol === 'object') {
+      setDescriptionRol(usuarioEditado.rol.descripcionRol || '');
+      setEstado(usuarioEditado.rol.estado || '');
+     } else {
+      setDescriptionRol('');
+      setEstado('');
+     }
+   };
 
   const handleEditUser = async (user) => {
     try {
@@ -31,7 +42,12 @@ const UsersList = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify({
+          rol: {
+            descripcionRol: descriptionRol, 
+            estado: estado
+          }
+        })
       });
       if (!response.ok) {
         throw new Error('Error al editar el user');
@@ -47,67 +63,52 @@ const UsersList = () => {
     fetchUsers();
   }, []);
 
+
   return (
     <div className="container-table">
-    <table className="table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Teléfono</th>
-          <th>Email</th>
-          <th>rol</th>
-        </tr>
-      </thead>
-      <tbody>
-      {Array.isArray(user) && user.map(user => (
-          <tr key={user._id}>
-            <td>{user.name}</td>
-            <td>{user.numPhone}</td>
-            <td>{user.email}</td>
-            <td>{user.rol}</td>
-            <td>
-              <h5>
-                <a onClick={() => editUser(user._id)}><FontAwesomeIcon icon={faPencil} /></a>
-              </h5>
-            </td>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Estado</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-    {userEdit && (
-      <div className="Registrar datatableUser">
-        <h1>EDIT USUARIO</h1>
-        <form>
-          <input
-            onChange={(e) => {
-              setUserEdit({ ...UserEdit, name: e.target.value });
-            }}
-            type="text"
-            placeholder="Nombre"
-            value={userEdit?.name || ''}
-          />
-          
-          <input
-            onChange={(e) => {
-              setUserEdit({ ...UserEdit, numPhone: e.target.value });
-            }}
-            type="text"
-            placeholder="Telefono"
-            value={userEdit?.numPhone || ''}
-          />
-             <input
-            onChange={(e) => {
-              setUserEdit({ ...UserEdit, email: e.target.value });
-            }}
-            type="text"
-            placeholder="Email"
-            value={userEdit?.email || ''}
-          />
-          <button type="button" onClick={() => handleEditUser(UserEdit)}>Editar usuario</button>
-        </form>
-      </div>
-    )}
-  </div>
+        </thead>
+        <tbody>
+          {user.map(user => (
+            <tr key={user._id}>
+              <td>{user.name}</td>
+              <td>{user.numPhone}</td>
+              <td>{user.email}</td>
+              <td>{user.descripcionRol}</td>
+              <td>{user.estado}</td>
+              <td>
+                <h5>
+                  <a onClick={() => editUser(user._id)}><FontAwesomeIcon icon={faPencil} /></a>
+                </h5>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {userEdit && (
+        <div className="Registrar datatableUser">
+          <h1></h1>
+          <form>
+            <select
+              onChange={(e) => setDescriptionRol(e.target.value)}
+              name="DescriptionRol">
+              <option value="">Selecciona un rol</option>
+              <option value="jefe">Jefe</option>
+              <option value="admin">Admin</option>
+              <option value="client">Cliente</option>
+            </select>
+            <button type="button" onClick={() => handleEditUser(userEdit)}>Editar usuario</button>          </form>
+        </div>
+      )}
+    </div>
   );
 };
 

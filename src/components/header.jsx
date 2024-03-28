@@ -99,6 +99,10 @@ const HeroHeader = () => {
     window.location.href = "/devolucion";
   };
 
+  const Usuarios = () => {
+    window.location.href = "/usuario";
+  };
+
   return (
     <header className="hero">
       <div className="nab container">

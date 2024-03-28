@@ -4,11 +4,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
     try {
-      const { name, numPhone, email} = await req.json();
+      const { name, numPhone, email, descripcionRol} = await req.json();
 
       await connectMongoDB();
       
-      await User.create({ name, numPhone, email});
+      await User.create({ name, numPhone, email,  descripcionRol});
 
       return NextResponse.json({ message: "User registrado." }, { status: 201 });
     } catch (error) {
@@ -29,6 +29,7 @@ export async function GET() {
         numPhone: result.numPhone,
         email: result.email,
         descripcionRol: result.rol.descripcionRol,
+        estado: result.rol.estado,
       }));
   
       return NextResponse.json(mappedResults);

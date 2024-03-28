@@ -37,38 +37,38 @@ export async function GET(request, { params }) {
   }
 }
 
- export async function PUT(request, { params }) {
-  const { name, numPhone, email} = await request.json(); 
-
-  try {
-    const result = await User.findByIdAndUpdate(params._id, {
-        name, 
-        numPhone, 
-        email,
-    });
-
-    if (!result) {
-      return new Response(
-        JSON.stringify({
-          message: 'Usuario no encontrada',
-        }),
-        {
-          status: 404,
-        }
-      );
+export async function PUT(request, { params }) {
+  
+    const { rol: { descripcionRol, estado }, } = await request.json();
+   
+    try {
+       const result = await User.findByIdAndUpdate(params._id, {
+           'rol.descripcionRol': rol.descripcionRol, 
+           'rol.estado': rol.estado 
+       }, { new: true }); 
+   
+       if (!result) {
+         return new Response(
+           JSON.stringify({
+             message: 'Usuario no encontrada',
+           }),
+           {
+             status: 404,
+           }
+         );
+       }
+   
+       return new Response(JSON.stringify(result), { 
+         headers: {
+           'Content-Type': 'application/json',
+         },
+       });
+    } catch (error) {
+       return new Response(
+         JSON.stringify({
+           message: error.message,
+         }),
+         { status: 500 }
+       );
     }
-
-    return new Response(null, {
-      status: 204,
-    });
-  } catch (error) {
-    return new Response(
-      JSON.stringify({
-        message: error.message,
-      }),
-      { status: 500 }
-    );
-  }
-}
-
- 
+   }
